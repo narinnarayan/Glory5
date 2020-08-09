@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:paddingBottom="20dp"
+        android:layout_gravity="center_horizontal">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                    android:text="VERIFY YOUR ACCOUNT"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="@color/black"
+                android:gravity="center"
+                android:padding="10dp"
+                android:textSize="18dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+            <ImageView
+                android:id="@+id/imgcancel"
+                android:layout_width="40dp"
+                android:layout_height="match_parent"
+                android:src="@drawable/cancel4"
+                android:padding="10dp"
+                android:layout_alignParentRight="true"
+                android:tint="@color/black"
+                android:layout_marginRight="10dp"/>
+        </RelativeLayout>
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="10dp"
+            android:layout_marginTop="10dp">
+
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@drawable/bordercurve"
+                android:padding="10dp"
+                android:layout_marginTop="10dp">
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:text="Email ID"-->
+<!--                    android:textColor="@color/black"-->
+<!--                    android:textSize="18dp"-->
+<!--                    android:gravity="center"/>-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_toLeftOf="@+id/xTvMailVerify">
+
+                    <EditText
+                        android:id="@+id/editname"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/white"
+                        android:hint=" email "
+                        android:textColorHint="@color/black"
+                        android:padding="8dp"
+                        android:singleLine="true"
+                        android:textSize="13dp" />
+                </LinearLayout>
+                <TextView
+                    android:id="@+id/xTvMailVerify"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="Verify"
+                    android:fontFamily="@font/roboto_bold"
+                    android:textColor="@color/white"
+                    android:textSize="14sp"
+                    android:gravity="center"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+                    android:layout_alignParentRight="true"
+                    android:background="@drawable/borderblack"/>
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@drawable/bordercurve"
+                android:padding="10dp"
+                android:layout_marginTop="10dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_toLeftOf="@+id/xTvMobileVerify">
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/white"
+                        android:textColorHint="@color/black"
+
+                        android:hint=" Mobile Number "
+                        android:padding="8dp"
+                        android:singleLine="true"
+                        android:textSize="13dp" />
+                </LinearLayout>
+                <TextView
+                    android:id="@+id/xTvMobileVerify"
+                    android:layout_width="wrap_content"
+                    android:fontFamily="@font/roboto_bold"
+
+                    android:layout_height="match_parent"
+                    android:text="Verify"
+                    android:textColor="@color/white"
+                    android:textSize="14sp"
+                    android:gravity="center"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+                    android:layout_alignParentRight="true"
+                    android:background="@drawable/borderblack"/>
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@drawable/bordercurve"
+                android:padding="10dp"
+                android:layout_marginTop="10dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_toLeftOf="@+id/xTvPanCardVerify">
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/white"
+                        android:hint=" Pan Card "
+                        android:textColorHint="@color/black"
+
+                        android:padding="8dp"
+                        android:singleLine="true"
+                        android:textSize="13dp" />
+                </LinearLayout>
+                <TextView
+                    android:id="@+id/xTvPanCardVerify"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="Verify"
+                    android:fontFamily="@font/roboto_bold"
+
+                    android:textColor="@color/white"
+                    android:textSize="14sp"
+                    android:gravity="center"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+                    android:layout_alignParentRight="true"
+                    android:background="@drawable/borderblack"/>
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@drawable/bordercurve"
+                android:padding="10dp"
+                android:layout_marginTop="10dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_toLeftOf="@+id/xTvBankVerify">
+
+                    <EditText
+                        android:id="@+id/xEtBank"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/white"
+                        android:clickable="false"
+                        android:editable="false"
+                        android:focusable="false"
+                        android:hint=" Bank Account "
+                        android:padding="8dp"
+                        android:textColorHint="@color/black"
+                        android:singleLine="true"
+                        android:textSize="13dp" />
+                </LinearLayout>
+                <TextView
+                    android:id="@+id/xTvBankVerify"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="Verify"
+                    android:fontFamily="@font/roboto_bold"
+
+                    android:textColor="@color/white"
+                    android:textSize="14sp"
+                    android:gravity="center"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+                    android:layout_alignParentRight="true"
+                    android:background="@drawable/borderblack"/>
+            </RelativeLayout>
+        </LinearLayout>
+
+
+
+
+
+    </LinearLayout>
+
+
+</LinearLayout>
