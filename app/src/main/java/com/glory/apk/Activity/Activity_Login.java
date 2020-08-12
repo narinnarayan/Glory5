@@ -562,12 +562,12 @@ public class Activity_Login extends AppCompatActivity {
             @Override
             public void onResponse(Call<LoginExample> call, Response<LoginExample> response) {
                 pDialog.dismiss();
-                Log.e("testing", "status = " + response.body().getStatus());
-                Log.e("testing", "response = " + response.body().getLoginResponse().getMessage());
-                //  Log.e("testing","response = "+response.body().getData().getPageContent());
-                Log.e("testing", "response = " + response.body());
-                if (response.body().getStatus() == null || response.body().getStatus().length() == 0) {
 
+                if (response.body().getStatus() == null || response.body().getStatus().length() == 0) {
+                    Log.e("testing", "status = " + response.body().getStatus());
+                    Log.e("testing", "response = " + response.body().getLoginResponse().getMessage());
+                    //  Log.e("testing","response = "+response.body().getData().getPageContent());
+                    Log.e("testing", "response = " + response.body());
                 } else if (response.body().getStatus().equals("success")) {
                     Log.e("testing", "error");
 
@@ -644,12 +644,12 @@ public class Activity_Login extends AppCompatActivity {
             @Override
             public void onResponse(Call<LoginExample> call, Response<LoginExample> response) {
                 pDialog.dismiss();
-                Log.e("testing", "status = " + response.body().getStatus());
-                Log.e("testing", "response = " + response.body().getLoginResponse().getMessage());
-                //  Log.e("testing","response = "+response.body().getData().getPageContent());
-                Log.e("testing", "response = " + response.body());
-                if (response.body().getStatus() == null || response.body().getStatus().length() == 0) {
 
+                if (response.body().getStatus() == null || response.body().getStatus().length() == 0) {
+                    Log.e("testing", "status = " + response.body().getStatus());
+                    Log.e("testing", "response = " + response.body().getLoginResponse().getMessage());
+                    //  Log.e("testing","response = "+response.body().getData().getPageContent());
+                    Log.e("testing", "response = " + response.body());
                 } else if (response.body().getStatus().equals("success")) {
                     Log.e("testing", "error");
 

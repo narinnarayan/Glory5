@@ -112,7 +112,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         strregisteredtoken = prefuserdata3.getString(sharedPrefs.Pref_token, "");
 
 
-
         drawer_title_name = (TextView) findViewById(R.id.drawer_title_name);
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         toggle = new ActionBarDrawerToggle(
@@ -124,7 +123,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         navigationView.setNavigationItemSelectedListener(this);
 
         nav_Menu = navigationView.getMenu();
-
 
 
         mFragmentManager = getSupportFragmentManager();
@@ -384,9 +382,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
 
-
-
-
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
@@ -573,10 +568,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         dialog.setCancelable(false);
         dialog.show();
 
-//        Api api = ApiClient.getClient().create(Api.class);
-//        Call<AboutExample> login = api.PlayersList("1");
-
-
         String viewuseremail = sharedPrefs.getPreferences(getApplicationContext(), sharedPrefs.Pref_userId);
         Log.e("testing", "viewuseremail = " + viewuseremail);
 
@@ -587,22 +578,27 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             public void onResponse(Call<AboutExample> call, Response<AboutExample> response) {
                 dialog.dismiss();
 
-
                 if (response.body().getStatus() == null || response.body().getStatus().length() == 0) {
 
                 } else if (response.body().getStatus().equals("success")) {
                     Log.e("testing", "status = " + response.body().getStatus());
                     Log.e("testing", "response = " + response.body().getAboutResponse().getType());
                     //  Log.e("testing","response = "+response.body().getData().getPageContent());
-
                     Log.e("testing", "response = " + response.body());
                     if (response.body().getAboutResponse() == null) {
 
                     } else if (response.body().getAboutResponse().getType().equals("data_available")) {
 
-                        drawer_title_name.setText(Html.fromHtml(response.body().getAboutData().getName()));
-                        Log.e("testing", "response = " + response.body().getAboutData().getName());
-                        sharedPrefs.savepref(getApplicationContext(), sharedPrefs.USER_NAME, response.body().getAboutData().getName().toString());
+                        if (response.body().getAboutData().getFullname() != null) {
+                            drawer_title_name.setText(Html.fromHtml(response.body().getAboutData().getFullname()));
+                            Log.e("testing", "response = " + response.body().getAboutData().getFullname());
+                            sharedPrefs.savepref(getApplicationContext(), sharedPrefs.USER_NAME, response.body().getAboutData().getFullname().toString());
+                        } else {
+                            drawer_title_name.setText(Html.fromHtml(""));
+                            sharedPrefs.savepref(getApplicationContext(), sharedPrefs.USER_NAME, "");
+
+                        }
+
 
                         Log.e("testing Image", String.valueOf(response.body().getAboutData().getImage()));
 
@@ -614,16 +610,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         }
 
 
-
                         if (response.body().getAboutData().getDeviceId() == null || response.body().getAboutData().getDeviceId().equals("")) {
                             nav_Menu.findItem(R.id.nav_ChangePassword).setVisible(true);
-
-
                         } else {
                             nav_Menu.findItem(R.id.nav_ChangePassword).setVisible(false);
-
                         }
-
 
                         if (String.valueOf(response.body().getAboutData().getImage()).equals("null") || response.body().getAboutData().getImage().toString().length() == 0) {
                             Glide.with(getApplicationContext())
@@ -650,6 +641,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
                         if ((response.body().getAboutData().getWalletAmount() == null)) {
                             textwallet.setText("\u20B9" + "0");
+                            sharedPrefs.savepref(getApplicationContext(), sharedPrefs.Wallet_Amount, "0");
 
                         } else {
                             textwallet.setText(("\u20B9" + " " + response.body().getAboutData().getWalletAmount().toString()));
@@ -659,7 +651,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 
                         if ((response.body().getAboutData().getWinning_amount() == null)) {
-                            sharedPrefs.savepref(getApplicationContext(), sharedPrefs.AVAILABLE_WITHDRAW,"0");
+                            sharedPrefs.savepref(getApplicationContext(), sharedPrefs.AVAILABLE_WITHDRAW, "0");
 
                         } else {
                             sharedPrefs.savepref(getApplicationContext(), sharedPrefs.AVAILABLE_WITHDRAW, response.body().getAboutData().getWinning_amount().toString());
@@ -668,7 +660,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 
                         if ((response.body().getAboutData().getDeposited_amount() == null)) {
-                            sharedPrefs.savepref(getApplicationContext(), sharedPrefs.AVAILABLE_DEPOSIT,"0");
+                            sharedPrefs.savepref(getApplicationContext(), sharedPrefs.AVAILABLE_DEPOSIT, "0");
 
                         } else {
                             sharedPrefs.savepref(getApplicationContext(), sharedPrefs.AVAILABLE_DEPOSIT, response.body().getAboutData().getDeposited_amount().toString());

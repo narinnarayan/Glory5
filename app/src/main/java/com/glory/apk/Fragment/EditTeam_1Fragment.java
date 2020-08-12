@@ -70,7 +70,7 @@ public class EditTeam_1Fragment extends Fragment implements EditHomeTeamAdapter.
         View root = inflater.inflate(R.layout.fragment_edit_team_1, container, false);
 //        Bundle bundle = this.getArguments();
         mActivity = (EditPlayerActivity) getActivity();
-        mCallBack=this;
+        mCallBack = this;
 //        mActivity.setAboutDataListener(getContext());
         Bundle bundle = this.getArguments();
         if (bundle != null) {
@@ -80,12 +80,13 @@ public class EditTeam_1Fragment extends Fragment implements EditHomeTeamAdapter.
         recyclerView = (RecyclerView) root.findViewById(R.id.rv_players);
         linearLayoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(linearLayoutManager);
-        xBtncallMain=(Button)root.findViewById(R.id.xBtncallMain);
-        xLinLayMain=(LinearLayout)root.findViewById(R.id.xLinLayMain);
+        xBtncallMain = (Button) root.findViewById(R.id.xBtncallMain);
+        xLinLayMain = (LinearLayout) root.findViewById(R.id.xLinLayMain);
         xBtncallMain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(getActivity(), MainActivity.class);
+                Intent intent = new Intent(getActivity(), MainActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
             }
         });
@@ -125,80 +126,79 @@ public class EditTeam_1Fragment extends Fragment implements EditHomeTeamAdapter.
 
                     } else if (response.body().getEditPlayerResponse().getType().equals("data_found")) {
                         Log.e("testing", "dateumList.size = " + response.body().getData().get(0).getEditPlayerMatch().getEditPlayerHomeTeam());
-                        playerDetailsList =response.body().getData().get(0).getEditPlayerMatch().getEditPlayerHomeTeam();
+                        playerDetailsList = response.body().getData().get(0).getEditPlayerMatch().getEditPlayerHomeTeam();
 
-                        for (int i=0;i<playerDetailsList.size();i++){
+                        for (int i = 0; i < playerDetailsList.size(); i++) {
                             EditPlayerHomeTeam playerDetails = playerDetailsList.get(i);
-                            Log.e("testing","Package id ="+response.body().getData().get(0).getPackageId());
+                            Log.e("testing", "Package id =" + response.body().getData().get(0).getPackageId());
 
-                            if (response.body().getData().get(0).getPackageId()==1){
-                                    if (playerDetails.getIsselected()==1){
-                                        StaticUtils.Edit_FINAL_COUNT= StaticUtils.Edit_FINAL_COUNT+1;
-                                        StaticUtils.Edit_HomeTeamcount= StaticUtils.Edit_HomeTeamcount+1;
-                                        StaticUtils.EditCREDITS5=StaticUtils.EditCREDITS5-Double.parseDouble(playerDetails.getCredits());
-                                        Log.e("testing","lestb ="+StaticUtils.EditCREDITS5);
-
-
-                      //                 passData(String.valueOf(Edit_FINAL_COUNT), String.valueOf(Edit_HomeTeamcount), String.valueOf(Edit_OppoTeamcount), StaticUtils.EditCREDITS5);
-
-                                    }
-                                } else {
-
-                                    if (playerDetails.getIsselected()==1){
-                                        StaticUtils.Edit_FINAL_COUNT= StaticUtils.Edit_FINAL_COUNT+1;
-                                        StaticUtils.Edit_HomeTeamcount= StaticUtils.Edit_HomeTeamcount+1;
-
-                                        StaticUtils.EditCREDITS7=StaticUtils.EditCREDITS7-Double.parseDouble(playerDetails.getCredits());
-
-                                    }
-                                }
-                        }
+                            if (response.body().getData().get(0).getPackageId() == 1) {
+                                if (playerDetails.getIsselected() == 1) {
+                                    StaticUtils.Edit_FINAL_COUNT = StaticUtils.Edit_FINAL_COUNT + 1;
+                                    StaticUtils.Edit_HomeTeamcount = StaticUtils.Edit_HomeTeamcount + 1;
+                                    StaticUtils.EditCREDITS5 = StaticUtils.EditCREDITS5 - Double.parseDouble(playerDetails.getCredits());
+                                    Log.e("testing", "lestb =" + StaticUtils.EditCREDITS5);
 
 
+                                    //                 passData(String.valueOf(Edit_FINAL_COUNT), String.valueOf(Edit_HomeTeamcount), String.valueOf(Edit_OppoTeamcount), StaticUtils.EditCREDITS5);
 
-                        playerawayDetailsList =response.body().getData().get(0).getEditPlayerMatch().getEditPlayerAwayTeam();
-
-                        for (int i=0;i<playerawayDetailsList.size();i++){
-                            EditPlayerAwayTeam playerDetails = playerawayDetailsList.get(i);
-                            if (response.body().getData().get(0).getPackageId()==1){
-
-                                if (playerDetails.getIsselected()==1){
-                                    StaticUtils.Edit_FINAL_COUNT= StaticUtils.Edit_FINAL_COUNT+1;
-                                    StaticUtils.EditCREDITS5=StaticUtils.EditCREDITS5-Double.parseDouble(playerDetails.getCredits());
-                                    StaticUtils.Edit_OppoTeamcount= StaticUtils.Edit_OppoTeamcount+1;
                                 }
                             } else {
 
-                                if (playerDetails.getIsselected()==1){
-                                    StaticUtils.Edit_FINAL_COUNT= StaticUtils.Edit_FINAL_COUNT+1;
+                                if (playerDetails.getIsselected() == 1) {
+                                    StaticUtils.Edit_FINAL_COUNT = StaticUtils.Edit_FINAL_COUNT + 1;
+                                    StaticUtils.Edit_HomeTeamcount = StaticUtils.Edit_HomeTeamcount + 1;
 
-                                    StaticUtils.EditCREDITS7=StaticUtils.EditCREDITS7-Double.parseDouble(playerDetails.getCredits());
-                                    StaticUtils.Edit_OppoTeamcount= StaticUtils.Edit_OppoTeamcount+1;
+                                    StaticUtils.EditCREDITS7 = StaticUtils.EditCREDITS7 - Double.parseDouble(playerDetails.getCredits());
 
                                 }
                             }
                         }
-                        if (response.body().getData().get(0).getPackageId()==1){
+
+
+                        playerawayDetailsList = response.body().getData().get(0).getEditPlayerMatch().getEditPlayerAwayTeam();
+
+                        for (int i = 0; i < playerawayDetailsList.size(); i++) {
+                            EditPlayerAwayTeam playerDetails = playerawayDetailsList.get(i);
+                            if (response.body().getData().get(0).getPackageId() == 1) {
+
+                                if (playerDetails.getIsselected() == 1) {
+                                    StaticUtils.Edit_FINAL_COUNT = StaticUtils.Edit_FINAL_COUNT + 1;
+                                    StaticUtils.EditCREDITS5 = StaticUtils.EditCREDITS5 - Double.parseDouble(playerDetails.getCredits());
+                                    StaticUtils.Edit_OppoTeamcount = StaticUtils.Edit_OppoTeamcount + 1;
+                                }
+                            } else {
+
+                                if (playerDetails.getIsselected() == 1) {
+                                    StaticUtils.Edit_FINAL_COUNT = StaticUtils.Edit_FINAL_COUNT + 1;
+
+                                    StaticUtils.EditCREDITS7 = StaticUtils.EditCREDITS7 - Double.parseDouble(playerDetails.getCredits());
+                                    StaticUtils.Edit_OppoTeamcount = StaticUtils.Edit_OppoTeamcount + 1;
+
+                                }
+                            }
+                        }
+                        if (response.body().getData().get(0).getPackageId() == 1) {
                             mCallBack.onItemClick(String.valueOf(StaticUtils.Edit_FINAL_COUNT), String.valueOf(StaticUtils.Edit_HomeTeamcount), String.valueOf(StaticUtils.Edit_OppoTeamcount), StaticUtils.EditCREDITS5);
 
-                        }else {
+                        } else {
                             mCallBack.onItemClick(String.valueOf(StaticUtils.Edit_FINAL_COUNT), String.valueOf(StaticUtils.Edit_HomeTeamcount), String.valueOf(StaticUtils.Edit_OppoTeamcount), StaticUtils.EditCREDITS7);
 
                         }
 
 
-                        String HomeTeam="0";
-                        HomeTeam=response.body().getData().get(0).getHomeTeamCount();
-                        if (playerDetailsList.size()==0){
+                        String HomeTeam = "0";
+                        HomeTeam = response.body().getData().get(0).getHomeTeamCount();
+                        if (playerDetailsList.size() == 0) {
                             xLinLayMain.setVisibility(View.VISIBLE);
                             recyclerView.setVisibility(View.GONE);
-                        }else {
+                        } else {
                             xLinLayMain.setVisibility(View.GONE);
                             recyclerView.setVisibility(View.VISIBLE);
 
-                            String awayTeamCount="0";
-                            awayTeamCount=response.body().getData().get(0).getAwayTeamCount();
-                            homeTeamAdapter = new EditHomeTeamAdapter(getActivity(), playerDetailsList, response.body().getData().get(0).getPackageId(),mCallBack,HomeTeam);
+                            String awayTeamCount = "0";
+                            awayTeamCount = response.body().getData().get(0).getAwayTeamCount();
+                            homeTeamAdapter = new EditHomeTeamAdapter(getActivity(), playerDetailsList, response.body().getData().get(0).getPackageId(), mCallBack, HomeTeam);
                             recyclerView.setAdapter(homeTeamAdapter);
                         }
                         pDialog.dismiss();
@@ -266,13 +266,13 @@ public class EditTeam_1Fragment extends Fragment implements EditHomeTeamAdapter.
 //
 //
 //    }
-    public void passData(String finalValue,String home,String opposite,Double credits) {
-        dataPasser.onDataPass(finalValue,home,opposite,credits);
+    public void passData(String finalValue, String home, String opposite, Double credits) {
+        dataPasser.onDataPass(finalValue, home, opposite, credits);
     }
 
     @Override
-    public void onItemClick(String finalValue, String homeValue, String OppositeValue,Double credits) {
-        passData(finalValue,homeValue,OppositeValue,credits);
+    public void onItemClick(String finalValue, String homeValue, String OppositeValue, Double credits) {
+        passData(finalValue, homeValue, OppositeValue, credits);
 
     }
 

@@ -55,18 +55,19 @@ public class HomeTeamAdapter extends RecyclerView.Adapter<HomeTeamAdapter.Player
         holder.playerName.setText(playerDetails.getPlayer().getFullName());
 
         if (playerDetails.getPlayer().getPlayerType()!=null){
+            Log.e("teting",playerDetails.getPlayer().getPlayerType());
 
             holder.xTvPlayerType.setVisibility(View.VISIBLE);
 
-            if (playerDetails.getPlayer().getPlayerType().toString().equals("Batsman")){
+            if (playerDetails.getPlayer().getPlayerType().equalsIgnoreCase("Batsman")){
                 holder.xTvPlayerType.setText("(BAT)");
-            }else if(playerDetails.getPlayer().getPlayerType().toString().equals("Bowler")){
+            }else if(playerDetails.getPlayer().getPlayerType().equalsIgnoreCase("Bowler")){
                 holder.xTvPlayerType.setText("(BWL)");
 
-            }else if(playerDetails.getPlayer().getPlayerType().toString().equals("Allrounder")){
+            }else if(playerDetails.getPlayer().getPlayerType().equalsIgnoreCase("Allrounder")){
                 holder.xTvPlayerType.setText("(ALL)");
 
-            }else if(playerDetails.getPlayer().getPlayerType().toString().equals("Wicketkeeper")){
+            }else if(playerDetails.getPlayer().getPlayerType().equalsIgnoreCase("Wicketkeeper")){
                 holder.xTvPlayerType.setText("(WK)");
 
             }else {

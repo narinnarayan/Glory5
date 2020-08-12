@@ -189,7 +189,7 @@ public class AccountVerifyActivity extends AppCompatActivity {
                             if (response.body().getData().getEmail().getVerified() == 1 && response.body().getData().getPhone().getVerified() == 1 && response.body().getData().getBankDetails().getVerified() == 1 && response.body().getData().getPancard().getVerified() == 1) {
                                 Intent intent = new Intent(getApplicationContext(), FinalWithDrawAmountActivity.class);
                                 bankName = response.body().getData().getBankDetails().getAccountName();
-                                bankAccount = response.body().getData().getBankDetails().getIfscCode();
+                                bankAccount = response.body().getData().getBankDetails().getAccountNumber();
                                 bankIfsc = response.body().getData().getBankDetails().getIfscCode();
                                 intent.putExtra(StaticUtils.BRANCH_NAME, bankName);
                                 intent.putExtra(StaticUtils.ACCOUNT_NUMBER, bankAccount);
@@ -311,11 +311,10 @@ public class AccountVerifyActivity extends AppCompatActivity {
                         xTvReson.setVisibility(View.VISIBLE);
                 }
                 bankName = response.body().getData().getBankDetails().getAccountName();
-                bankAccount = response.body().getData().getBankDetails().getIfscCode();
+                bankAccount = response.body().getData().getBankDetails().getAccountNumber();
                 bankIfsc = response.body().getData().getBankDetails().getIfscCode();
                 bankid = String.valueOf(response.body().getData().getBankDetails().getId());
                 Log.e("testing","testing " +bankid);
-
                 xTvBankVerify.setTextColor(Color.parseColor("#F34235"));
             }
         }

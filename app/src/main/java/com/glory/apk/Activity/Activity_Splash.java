@@ -124,7 +124,7 @@ public class Activity_Splash extends AppCompatActivity {
                             AlertDialog dialog = new AlertDialog.Builder(Activity_Splash.this)
                                     .setTitle("New version available")
                                     .setCancelable(false)
-                                    .setMessage("Please, update app to new version to continue reposting.")
+                                    .setMessage("Please, update app to new version to continue playing.")
                                     .setPositiveButton("Update",
                                             new DialogInterface.OnClickListener() {
                                                 @Override
@@ -155,7 +155,7 @@ public class Activity_Splash extends AppCompatActivity {
                         AlertDialog dialog = new AlertDialog.Builder(Activity_Splash.this)
                                 .setTitle("New version available")
                                 .setCancelable(false)
-                                .setMessage("Please, update app to new version to continue reposting.")
+                                .setMessage("Please, update app to new version to continue playing.")
                                 .setPositiveButton("Update",
                                         new DialogInterface.OnClickListener() {
                                             @Override

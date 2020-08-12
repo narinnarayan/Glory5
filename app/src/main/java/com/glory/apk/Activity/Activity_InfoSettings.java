@@ -45,7 +45,7 @@ public class Activity_InfoSettings extends AppCompatActivity {
     JSONParser jsonParser = new JSONParser();
     String strregisteredtoken;
 
-    EditText editname, editemail,editfullname;
+    EditText editname, editemail, editfullname;
 
     EditText textmobileno;
     EditText textdob;
@@ -60,7 +60,7 @@ public class Activity_InfoSettings extends AppCompatActivity {
 
     Spinner spinner;
     String strspinnerposition;
-   String  strfullname;
+    String strfullname;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,7 +74,7 @@ public class Activity_InfoSettings extends AppCompatActivity {
         textmobileno = (EditText) findViewById(R.id.textmobileno);
         textdob = (EditText) findViewById(R.id.textdob);
         butsubmit = (Button) findViewById(R.id.butsubmit);
-        editfullname=(EditText)findViewById(R.id.editfullname);
+        editfullname = (EditText) findViewById(R.id.editfullname);
 
 
         spinner = (Spinner) findViewById(R.id.xGenderSpinner);
@@ -189,13 +189,13 @@ public class Activity_InfoSettings extends AppCompatActivity {
 
         if (strfullname == null || strfullname.trim().length() == 0 || strfullname.trim().equals("0") || strfullname.trim().equals("0")) {
             Toast.makeText(Activity_InfoSettings.this, "Please Enter Fullname", Toast.LENGTH_SHORT).show();
-        }else if (strname == null || strname.trim().length() == 0 || strname.trim().equals("0") || strname.trim().equals("0")) {
+        } else if (strname == null || strname.trim().length() == 0 || strname.trim().equals("0") || strname.trim().equals("0")) {
             Toast.makeText(Activity_InfoSettings.this, "Please Enter Username", Toast.LENGTH_SHORT).show();
         } else if (strmail == null || strmail.trim().length() == 0 || strmail.trim().equals("0") || strmail.trim().equals("0")) {
             Toast.makeText(Activity_InfoSettings.this, "Please Enter Email Id", Toast.LENGTH_SHORT).show();
-        } else if (textmobileno == null || textmobileno.getText().toString().trim().length() != 10 ) {
+        } else if (textmobileno == null || textmobileno.getText().toString().trim().length() != 10) {
             Toast.makeText(Activity_InfoSettings.this, "Please Enter Phone number", Toast.LENGTH_SHORT).show();
-        }  else if (strdob == null || strdob.trim().length() == 0 || strdob.trim().equals("0") || strdob.trim().equals("0")) {
+        } else if (strdob == null || strdob.trim().length() == 0 || strdob.trim().equals("0") || strdob.trim().equals("0")) {
             Toast.makeText(Activity_InfoSettings.this, "Please Select Date", Toast.LENGTH_SHORT).show();
         } else {
 //            Activity_UpdateProfile(strname, strmail, strdob, strspinnerposition);
@@ -336,17 +336,26 @@ public class Activity_InfoSettings extends AppCompatActivity {
 
 
                         if (String.valueOf(response.body().getAboutData().getName()).equals("null")) {
+                            editname.setClickable(true);
+                            editname.setEnabled(true);
+                            editname.setFocusable(true);
                         } else {
+                            editname.setClickable(false);
+                            editname.setFocusable(false);
+                            editname.setEnabled(false);
                             editname.setText(Html.fromHtml(response.body().getAboutData().getName().toString()));
 
                         }
 
                         if (String.valueOf(response.body().getAboutData().getFullname()).equals("null")) {
+
+
                         } else {
+
                             editfullname.setText(Html.fromHtml(response.body().getAboutData().getFullname().toString()));
                         }
 
-                        if (  response.body().getAboutData().getEmail()!=null){
+                        if (response.body().getAboutData().getEmail() != null) {
                             editemail.setText(Html.fromHtml(response.body().getAboutData().getEmail()));
 
                         }
@@ -450,7 +459,7 @@ public class Activity_InfoSettings extends AppCompatActivity {
         Log.e("testing", "email = " + email);
         Log.e("testing", "username = " + username);
 
-        Call<UpdateprofileJson> login = api.updateProfile(viewuseremail, email, strfullname,username, dod, gender,textmobileno.getText().toString());
+        Call<UpdateprofileJson> login = api.updateProfile(viewuseremail, email, strfullname, username, dod, gender, textmobileno.getText().toString());
         login.enqueue(new Callback<UpdateprofileJson>() {
             @Override
             public void onResponse(Call<UpdateprofileJson> call, Response<UpdateprofileJson> response) {

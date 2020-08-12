@@ -278,7 +278,6 @@ public class AddMoneyActivity extends AppCompatActivity {
                     CFPaymentService.getCFPaymentServiceInstance().doPayment(AddMoneyActivity.this, dataSend, response.body().getToken().toString(), "PROD", "#784BD2", "#FFFFFF", false);
                     pDialog.dismiss();
 
-
                 } else {
                     Log.e("testing", "error");
                     pDialog.dismiss();

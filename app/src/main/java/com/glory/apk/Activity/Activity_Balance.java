@@ -314,7 +314,6 @@ public class Activity_Balance extends AppCompatActivity implements Adapter_Walle
             feedInfo.setRowid(rowid[i]);
             feedInfo.setFeederName(title[i]);
             feedInfo.setFeederThumbnail(images[i]);
-            // feedInfo.setImage(image[i]);
             mListFeederInfo.add(feedInfo);
         }
         adapter = new Adapter_WalletList(Activity_Balance.this, mListFeederInfo, mCallback);
@@ -327,6 +326,16 @@ public class Activity_Balance extends AppCompatActivity implements Adapter_Walle
     protected void onResume() {
         super.onResume();
         textWinning.setText(strrs + " " + sharedPrefs.getPreferences(getApplicationContext(), sharedPrefs.AVAILABLE_WITHDRAW));
+
+
+        if ((sharedPrefs.getPreferences(getApplicationContext(), sharedPrefs.Wallet_Amount) == null || sharedPrefs.getPreferences(getApplicationContext(), sharedPrefs.Wallet_Amount).isEmpty())) {
+            textwallet.setText("\u20B9" + "0");
+
+        } else {
+            textwallet.setText(strrs + " " + sharedPrefs.getPreferences(getApplicationContext(), sharedPrefs.Wallet_Amount));
+            Log.e("testing", "status = " + sharedPrefs.getPreferences(getApplicationContext(), sharedPrefs.Wallet_Amount));
+
+        }
     }
 
     private void Activity_Profile() {
@@ -386,11 +395,6 @@ public class Activity_Balance extends AppCompatActivity implements Adapter_Walle
                             textDeposited.setText(strrs + " " + sharedPrefs.getPreferences(getApplicationContext(), sharedPrefs.AVAILABLE_DEPOSIT));
 
                         }
-
-
-//                        textdob.setText(Html.fromHtml(response.body().getAboutData().get()));
-//                        editname.setText(Html.fromHtml(response.body().getAboutData().getName()));
-
                     } else {
                         Toast.makeText(Activity_Balance.this, response.body().getAboutResponse().getType(), Toast.LENGTH_SHORT).show();
                     }

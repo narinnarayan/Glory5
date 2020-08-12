@@ -69,12 +69,35 @@ public class Adapter_MyMatches extends RecyclerView.Adapter<Adapter_MyMatches.Fi
         }
 
 
-        if (!follow.getName().equals(null)) {
+        if (!follow.getSeason_name().equals(null)) {
 //            holder.xTvTitle.setText(follow.getSeries().getName()+follow.getName());
-            holder.xTvTitle.setText(follow.getName());
+            holder.xTvTitle.setText(follow.getSeason_name());
 
         } else {
 
+        }
+
+        if (!follow.getCmsMatchAssociatedType().equals(null)) {
+//            holder.xTvTitle.setText(follow.getSeries().getName()+follow.getName());
+
+            if (follow.getCmsMatchAssociatedType().equalsIgnoreCase("t10")){
+                holder.xTvMatchType.setText("T10");
+
+            }else if (follow.getCmsMatchAssociatedType().equalsIgnoreCase("t20")){
+                holder.xTvMatchType.setText("T20");
+
+            }else if (follow.getCmsMatchAssociatedType().equalsIgnoreCase("test")){
+                holder.xTvMatchType.setText("TEST");
+
+            }else if (follow.getCmsMatchAssociatedType().equalsIgnoreCase("one-day")){
+                holder.xTvMatchType.setText("ODI");
+
+            }else {
+                holder.xTvMatchType.setVisibility(View.INVISIBLE);
+            }
+
+        } else {
+            holder.xTvMatchType.setVisibility(View.INVISIBLE);
         }
 
         if (follow.getHometeam().getShortName() == (null)) {
@@ -142,7 +165,6 @@ public class Adapter_MyMatches extends RecyclerView.Adapter<Adapter_MyMatches.Fi
                     .error(R.drawable.default_team_logo)
                     .into(holder.xIvHomeTeam);
         }
-
         if (follow.getAwayteam().getLogoUrl() == null || follow.getAwayteam().getLogoUrl().length() == 0) {
             Glide.with(mCtx)
                     .load(Uri.parse(String.valueOf(R.drawable.default_team_logo)))
@@ -183,7 +205,7 @@ public class Adapter_MyMatches extends RecyclerView.Adapter<Adapter_MyMatches.Fi
     public class FilterViewHolder extends RecyclerView.ViewHolder {
 
         TextView xTvTitle;
-        TextView xTvHomeTeam, xTvOppositeTeamName, xTvTime;
+        TextView xTvHomeTeam, xTvOppositeTeamName, xTvTime,xTvMatchType;
         ImageView xIvHomeTeam, xIvOppsiteTeam;
         RelativeLayout xRelayGray;
         CardView card_view1;
@@ -199,6 +221,7 @@ public class Adapter_MyMatches extends RecyclerView.Adapter<Adapter_MyMatches.Fi
             xIvHomeTeam = itemView.findViewById(R.id.xIvHomeTeam);
             xIvOppsiteTeam = itemView.findViewById(R.id.xIvOppsiteTeam);
             xRelayGray = itemView.findViewById(R.id.xRelayGray);
+            xTvMatchType=itemView.findViewById(R.id.xTvMatchType);
 
         }
     }

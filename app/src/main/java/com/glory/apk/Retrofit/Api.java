@@ -207,7 +207,7 @@ public interface Api {
 
     @POST("user/authentication/signin/index")
     @FormUrlEncoded
-    Call<LoginExample> LoginWithEmail(@Field("image") String Image, @Field("fcm_token") String Fcm_token, @Field("name") String name, @Field("email") String email, @Field("device_id") String device_id, @Field("login_type") String login_type, @Field("device_type") String device_type);
+    Call<LoginExample> LoginWithEmail(@Field("image") String Image, @Field("fcm_token") String Fcm_token, @Field("fullname") String fullname, @Field("email") String email, @Field("device_id") String device_id, @Field("login_type") String login_type, @Field("device_type") String device_type);
 
     @POST("user/withdraw/request")
     @FormUrlEncoded

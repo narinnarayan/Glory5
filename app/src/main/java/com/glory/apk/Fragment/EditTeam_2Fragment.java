@@ -86,6 +86,7 @@ public class EditTeam_2Fragment extends Fragment implements EditAwayTeamAdapter.
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(getActivity(), MainActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
             }
         });

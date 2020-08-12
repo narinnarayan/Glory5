@@ -13,7 +13,7 @@ public class CashPaymentApiClint {
     public static Retrofit getClient() {
         if (retrofit == null) {
             retrofit = new Retrofit.Builder()
-                    .baseUrl("http://glory5.in/glory5/cashfreephp/")
+                    .baseUrl("https://glory5.in/glory5/cashfreephp/")
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
         }

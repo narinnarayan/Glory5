@@ -114,6 +114,7 @@ public class FinalWithDrawAmountActivity extends AppCompatActivity {
                 if (response.body().getStatus() == null || response.body().getStatus().length() == 0) {
 
                 } else if (response.body().getStatus().equals("success")) {
+                    finish();
                     Log.e("testing", "status = " + response.body().getStatus());
                     Log.e("testing", "response = " + response.body().getResponse().getType());
                     //  Log.e("testing","response = "+response.body().getData().getPageContent());
@@ -123,9 +124,24 @@ public class FinalWithDrawAmountActivity extends AppCompatActivity {
 
                     } else if (response.body().getResponse().getType().equals("save_success")) {
 
-                        sharedPrefs.savepref(getApplicationContext(), sharedPrefs.AVAILABLE_WITHDRAW,response.body().getData().getRemWinningAmount());
+                        if ((response.body().getData().getRemWinningAmount() == null)) {
+                            sharedPrefs.savepref(getApplicationContext(), sharedPrefs.AVAILABLE_WITHDRAW,"0");
+
+                        } else {
+                            sharedPrefs.savepref(getApplicationContext(), sharedPrefs.AVAILABLE_WITHDRAW,response.body().getData().getRemWinningAmount());
+                            pDialog.dismiss();
+                        }
+
+                        if ((response.body().getData().getTotal_wallet_balance() == null)) {
+                            sharedPrefs.savepref(getApplicationContext(), sharedPrefs.Wallet_Amount, "0");
+
+                        } else {
+                            sharedPrefs.savepref(getApplicationContext(), sharedPrefs.Wallet_Amount,response.body().getData().getTotal_wallet_balance());
+
+                        }
+
                         Toast.makeText(getApplicationContext(), "Your withdraw request is received. Kindly wait till the request is processed.", Toast.LENGTH_SHORT).show();
-                        pDialog.dismiss();
+
 
                     } else {
 //                        Toast.makeText(getApplicationContext(), "Withdrawal amount requested is higher than the available winnings for withdrawal", Toast.LENGTH_LONG).show();

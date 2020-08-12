@@ -67,24 +67,22 @@ public class OppositeTeamAdapter extends RecyclerView.Adapter<OppositeTeamAdapte
         if (playerDetails.getPlayer().getPlayerType() != null) {
             holder.xTvPlayerType.setVisibility(View.VISIBLE);
 
-            if (playerDetails.getPlayer().getPlayerType().toString().equals("Batsman")) {
+            if (playerDetails.getPlayer().getPlayerType().toString().equalsIgnoreCase("Batsman")) {
                 holder.xTvPlayerType.setText("(BAT)");
-            } else if (playerDetails.getPlayer().getPlayerType().toString().equals("Bowler")) {
+            } else if (playerDetails.getPlayer().getPlayerType().toString().equalsIgnoreCase("Bowler")) {
                 holder.xTvPlayerType.setText("(BWL)");
 
-            } else if (playerDetails.getPlayer().getPlayerType().toString().equals("Allrounder")) {
+            } else if (playerDetails.getPlayer().getPlayerType().toString().equalsIgnoreCase("Allrounder")) {
                 holder.xTvPlayerType.setText("(ALL)");
 
-            } else if (playerDetails.getPlayer().getPlayerType().toString().equals("Wicketkeeper")) {
+            } else if (playerDetails.getPlayer().getPlayerType().toString().equalsIgnoreCase("Wicketkeeper")) {
                 holder.xTvPlayerType.setText("(WK)");
 
             } else {
                 holder.xTvPlayerType.setVisibility(View.GONE);
-
             }
         } else {
             holder.xTvPlayerType.setVisibility(View.GONE);
-
         }
 
         if (playerDetails.getPlayer().getImageURL() == null || playerDetails.getPlayer().getImageURL().toString().length() == 0) {

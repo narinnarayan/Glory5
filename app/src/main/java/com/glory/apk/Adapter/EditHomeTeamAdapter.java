@@ -62,15 +62,15 @@ public class EditHomeTeamAdapter extends RecyclerView.Adapter<EditHomeTeamAdapte
         if (playerDetails.getEditPlayerPlayer().getPlayerType() != null) {
             holder.xTvPlayerType.setVisibility(View.VISIBLE);
 
-            if (playerDetails.getEditPlayerPlayer().getPlayerType().toString().equals("Batsman")) {
+            if (playerDetails.getEditPlayerPlayer().getPlayerType().toString().equalsIgnoreCase("Batsman")) {
                 holder.xTvPlayerType.setText("(BAT)");
-            } else if (playerDetails.getEditPlayerPlayer().getPlayerType().toString().equals("Bowler")) {
+            } else if (playerDetails.getEditPlayerPlayer().getPlayerType().toString().equalsIgnoreCase("Bowler")) {
                 holder.xTvPlayerType.setText("(BWL)");
 
-            } else if (playerDetails.getEditPlayerPlayer().getPlayerType().toString().equals("Allrounder")) {
+            } else if (playerDetails.getEditPlayerPlayer().getPlayerType().toString().equalsIgnoreCase("Allrounder")) {
                 holder.xTvPlayerType.setText("(ALL)");
 
-            } else if (playerDetails.getEditPlayerPlayer().getPlayerType().toString().equals("Wicketkeeper")) {
+            } else if (playerDetails.getEditPlayerPlayer().getPlayerType().toString().equalsIgnoreCase("Wicketkeeper")) {
                 holder.xTvPlayerType.setText("(WK)");
 
             } else {
