@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <androidx.cardview.widget.CardView xmlns:app="http://schemas.android.com/apk/res-auto"
+    <androidx.cardview.widget.CardView
         android:id="@+id/card_view1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         app:cardCornerRadius="5dp"
         app:cardElevation="5dp">
-
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -41,12 +41,10 @@
                     android:layout_marginLeft="40dp"
                     android:layout_marginRight="40dp"
                     android:layout_toLeftOf="@+id/xIvImage"
-
                     android:layout_toRightOf="@+id/xTvText"
                     android:fontFamily="@font/roboto_medium"
                     android:gravity="center"
                     android:includeFontPadding="false"
-                    android:text="Kabul vs province vs Bulkh province"
                     android:textColor="@color/black"
                     android:textSize="14dp" />
 
@@ -86,7 +84,6 @@
                         android:layout_marginLeft="5dp"
                         android:layout_toRightOf="@+id/xIvHomeTeam"
                         android:gravity="center_vertical"
-                        android:text="NSW"
                         android:textColor="#1E3E8C"
                         android:textSize="16dp"
                         android:textStyle="bold" />
@@ -130,7 +127,6 @@
                         android:layout_marginRight="5dp"
                         android:layout_toLeftOf="@+id/xIvOppsiteTeam"
                         android:gravity="center_vertical"
-                        android:text="NSW"
                         android:textColor="#1E3E8C"
                         android:textSize="16dp"
                         android:textStyle="bold" />
@@ -146,12 +142,10 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:padding="10dp"
-                android:text="5h 42m left"
                 android:textColor="@color/theme"
                 android:textSize="14sp"
                 android:textStyle="bold" />
         </LinearLayout>
-
 
         <RelativeLayout
             android:id="@+id/xRelayGray"
@@ -159,6 +153,7 @@
             android:layout_height="match_parent"
             android:background="#A9444447"
             android:visibility="gone" />
+
     </androidx.cardview.widget.CardView>
 
 

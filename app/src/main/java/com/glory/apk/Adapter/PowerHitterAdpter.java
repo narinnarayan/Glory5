@@ -57,9 +57,11 @@ public class PowerHitterAdpter extends RecyclerView.Adapter<PowerHitterAdpter.Hi
                 holder.xTvPlayerType.setText("");
                 holder.xTvPlayerType.setVisibility(View.GONE);
             } else {
-                holder.xTvPlayerType.setText(playerDetails.getPlayerType());
                 holder.xTvPlayerType.setVisibility(View.VISIBLE);
                 holder.xTvPlayerType.setTextColor(context.getResources().getColor(R.color.colorPrimary));
+
+                callPlayerType(playerDetails.getPlayerType(), holder.xTvPlayerType);
+
             }
 
             playerDetails.setPowerHitter(false);
@@ -92,9 +94,9 @@ public class PowerHitterAdpter extends RecyclerView.Adapter<PowerHitterAdpter.Hi
                 holder.xTvPlayerType.setText("");
                 holder.xTvPlayerType.setVisibility(View.GONE);
             } else {
-                holder.xTvPlayerType.setText(playerDetails.getPlayerType());
                 holder.xTvPlayerType.setVisibility(View.VISIBLE);
                 holder.xTvPlayerType.setTextColor(context.getResources().getColor(R.color.greencolor));
+                callPlayerType(playerDetails.getPlayerType(), holder.xTvPlayerType);
 
             }
 
@@ -120,6 +122,24 @@ public class PowerHitterAdpter extends RecyclerView.Adapter<PowerHitterAdpter.Hi
                 notifyDataSetChanged();
             }
         });
+
+    }
+
+    private void callPlayerType(String playerType, TextView xTvPlayerType) {
+        if (playerType.equalsIgnoreCase("Batsman")) {
+            xTvPlayerType.setText("(BAT)");
+        } else if (playerType.equalsIgnoreCase("Bowler")) {
+            xTvPlayerType.setText("(BWL)");
+
+        } else if (playerType.equalsIgnoreCase("Allrounder")) {
+            xTvPlayerType.setText("(ALL)");
+
+        } else if (playerType.equalsIgnoreCase("Wicketkeeper")) {
+            xTvPlayerType.setText("(WK)");
+
+        } else {
+            xTvPlayerType.setVisibility(View.GONE);
+        }
 
     }
 

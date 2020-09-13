@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="#424242"
     android:orientation="vertical">
 
@@ -28,7 +29,6 @@
                     android:layout_gravity="left"
                     android:src="@mipmap/ic_launcher_icon_round" />
             </RelativeLayout>
-
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -36,6 +36,117 @@
                 android:padding="30dp"
                 android:layout_gravity="center"
                 android:src="@drawable/comingsoon" />
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                >
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/roboto_bold"
+                        android:text="INVITE FRIENDS"
+                        android:padding="5dp"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="18dp" />
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#424242"
+                        android:src="@drawable/ic_gift2" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/roboto_regular"
+                        android:text="Invite Your Friends"
+                        android:textColor="@color/white"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/roboto_bold"
+                        android:visibility="gone"
+                        android:padding="10dp"
+                        android:text="AND EARN BONUS AMOUNT IN YOUR WALLET"
+                        android:textColor="@color/white"
+                        android:textSize="16sp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/roboto_bold"
+                        android:padding="10dp"
+                        android:visibility="gone"
+                        android:text="Your refer code"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="14sp" />
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:cardElevation="2dp"
+                        app:cardBackgroundColor="@color/white"
+                        android:layout_gravity="center">
+                        <TextView
+                            android:id="@+id/xTvCode"
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:visibility="gone"
+                            android:fontFamily="@font/roboto_bold" />
+
+                    </androidx.cardview.widget.CardView>
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/roboto_medium"
+                        android:paddingTop="10dp"
+                        android:paddingBottom="10dp"
+                        android:paddingRight="20dp"
+                        android:paddingLeft="20dp"
+                        android:visibility="gone"
+                        android:text="Share this code with your friends.When they order delivery or pickup for the first time through G2E Retail they'll get RS 10 off.Then you will too."
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        android:textSize="14sp" />
+
+
+                    <TextView
+                        android:id="@+id/xTvShare"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/roboto_bold"
+                        android:text="Invite Friends"
+                        android:paddingTop="10dp"
+                        android:paddingBottom="10dp"
+                        android:paddingRight="20dp"
+                        android:paddingLeft="20dp"
+                        android:layout_marginTop="20dp"
+                        android:background="@color/colorPrimary"
+                        android:textColor="@color/white"
+                        android:textSize="18sp" />
+                </LinearLayout>
+
+
+            </ScrollView>
+
 
         </LinearLayout>
 

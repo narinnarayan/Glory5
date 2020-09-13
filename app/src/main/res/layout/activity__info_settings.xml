@@ -4,6 +4,7 @@
     android:layout_height="match_parent"
     android:background="#000000"
     android:orientation="vertical">
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -42,9 +43,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight=".4"
+                    android:drawablePadding="5dp"
                     android:background="@drawable/bordergrey"
                     android:drawableLeft="@drawable/ic_action_person"
-                    android:hint=" Fullname "
+                    android:hint="Fullname "
                     android:padding="8dp"
                     android:singleLine="true"
                     android:textSize="13dp" />
@@ -63,9 +65,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight=".4"
+                    android:drawablePadding="5dp"
                     android:background="@drawable/bordergrey"
-                    android:drawableLeft="@drawable/ic_action_person"
-                    android:hint=" Username "
+                    android:drawableLeft="@drawable/ic_action_profile"
+                    android:hint="Username "
                     android:padding="8dp"
                     android:singleLine="true"
                     android:textSize="13dp" />
@@ -85,12 +88,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight=".4"
+                    android:drawablePadding="5dp"
                     android:background="@drawable/bordergrey"
                     android:drawableLeft="@drawable/ic_action_email"
-                    android:hint=" Email Id "
+                    android:hint="Email Id "
+                    android:inputType="textEmailAddress"
                     android:padding="8dp"
                     android:singleLine="true"
-                    android:inputType="textEmailAddress"
                     android:textSize="13dp" />
             </LinearLayout>
 
@@ -107,13 +111,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight=".4"
-                    android:maxLength="10"
                     android:background="@drawable/bordergrey"
                     android:drawableLeft="@drawable/ic_action_phone"
-                    android:hint=" Mobile number "
+                    android:hint="Mobile number "
+                    android:inputType="number"
+                    android:maxLength="10"
                     android:padding="8dp"
                     android:singleLine="true"
-                    android:inputType="number"
                     android:textSize="13dp" />
             </LinearLayout>
 
@@ -123,9 +127,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="25dp"
                 android:layout_marginTop="5dp"
-                android:visibility="visible"
                 android:layout_marginEnd="25dp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:visibility="visible">
 
 
                 <EditText
@@ -133,12 +137,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight=".4"
+                    android:drawablePadding="5dp"
                     android:background="@drawable/bordergrey"
-                    android:drawableLeft="@drawable/ic_action_person"
-                    android:hint=" Dob "
+                    android:drawableLeft="@drawable/ic_date"
+                    android:hint="Dob "
+                    android:inputType="number"
                     android:padding="8dp"
                     android:singleLine="true"
-                    android:inputType="number"
                     android:textSize="13dp" />
 
 
@@ -148,11 +153,11 @@
                 android:id="@+id/xLinLaySpinner"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:visibility="visible"
                 android:layout_marginStart="25dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginEnd="25dp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:visibility="visible">
 
                 <Spinner
                     android:id="@+id/xGenderSpinner"

@@ -24,6 +24,7 @@ import com.glory.apk.Adapter.PlayerViewAdapter;
 import com.glory.apk.MainActivity;
 import com.glory.apk.Model.EditPlayersListModel.EditPlayerAwayTeam;
 import com.glory.apk.Model.EditPlayersListModel.EditPlayerExample;
+import com.glory.apk.Model.EditPlayersListModel.EditPlayerHomeTeam;
 import com.glory.apk.R;
 import com.glory.apk.Retrofit.Api;
 import com.glory.apk.Retrofit.ApiClient;
@@ -135,7 +136,26 @@ public class EditTeam_2Fragment extends Fragment implements EditAwayTeamAdapter.
                             recyclerView.setVisibility(View.VISIBLE);
                             String awayTeamCount="0";
                             awayTeamCount=response.body().getData().get(0).getAwayTeamCount();
-                            homeTeamAdapter = new EditAwayTeamAdapter(getActivity(), playerDetailsList, response.body().getData().get(0).getPackageId(),mCallBack,awayTeamCount,0);
+
+                            List<EditPlayerAwayTeam> newplayerDetailsList = new ArrayList<>();
+
+                            for (int i = 0; i < playerDetailsList.size(); i++) {
+
+
+                                if (playerDetailsList.get(i).getIsselected() == 1) {
+                                    newplayerDetailsList.add(playerDetailsList.get(i));
+                                }
+                            }
+
+                            for (int i = 0; i < playerDetailsList.size(); i++) {
+
+
+                                if (playerDetailsList.get(i).getIsselected() != 1) {
+                                    newplayerDetailsList.add(playerDetailsList.get(i));
+                                }
+                            }
+
+                            homeTeamAdapter = new EditAwayTeamAdapter(getActivity(), newplayerDetailsList, response.body().getData().get(0).getPackageId(),mCallBack,awayTeamCount,0);
                             recyclerView.setAdapter(homeTeamAdapter);
                         }
 
@@ -149,6 +169,8 @@ public class EditTeam_2Fragment extends Fragment implements EditAwayTeamAdapter.
 
                 } else {
                     Log.e("testing", "error");
+                    xLinLayMain.setVisibility(View.VISIBLE);
+                    recyclerView.setVisibility(View.GONE);
                     pDialog.dismiss();
                     Toast.makeText(getContext(), response.body().getEditPlayerResponse().getType(), Toast.LENGTH_SHORT).show();
                 }

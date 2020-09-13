@@ -40,11 +40,11 @@ import java.util.Map;
 
 public class MyFirebaseMessagingService extends com.google.firebase.messaging.FirebaseMessagingService {
 
+    private static final String TAG = "testing";
+    private static final String[] EMPTY_ARRAY = new String[0];
     Bitmap bitmap;
     String type;
     Intent resultIntent;
-    private static final String TAG = "testing";
-
     private NotificationUtils notificationUtils;
 
     @Override
@@ -70,7 +70,6 @@ public class MyFirebaseMessagingService extends com.google.firebase.messaging.Fi
         Log.e(TAG, "sendRegistrationToServer: " + token);
     }
 
-
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
         Log.e(TAG, "From: " + remoteMessage.getFrom());
@@ -85,13 +84,13 @@ public class MyFirebaseMessagingService extends com.google.firebase.messaging.Fi
             Map<String, String> data = remoteMessage.getData();
             JSONObject jsonData = new JSONObject(data);
             try {
+
                 String message = jsonData.getString("message");
                 JSONObject Jsonmessage = new JSONObject(message);
                 String notification_title = Jsonmessage.getString("notification_title");
                 String notification_message = Jsonmessage.getString("notification_message");
                 handleNotification(notification_title);
                 handleDataMessage(notification_message, notification_title);
-
 
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -126,8 +125,6 @@ public class MyFirebaseMessagingService extends com.google.firebase.messaging.Fi
             bitmap = getBitmapfromUrl(imageUrl);
         sendNotification(notification_message, bitmap, notification_title, type);
     }
-
-    private static final String[] EMPTY_ARRAY = new String[0];
 
     private void handlerNotification() {
 
@@ -278,15 +275,13 @@ public class MyFirebaseMessagingService extends com.google.firebase.messaging.Fi
             pendingIntent = PendingIntent.getActivity(this, 0 /* Request code */, intent,
                     PendingIntent.FLAG_ONE_SHOT);
         }
-
         final int icon = R.drawable.ic_notify_bat;
         Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
         NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this, "01")
                 .setContentTitle(title)
                 .setSmallIcon(R.drawable.ic_notify_bat)
                 .setLargeIcon(BitmapFactory.decodeResource(MyFirebaseMessagingService.this.getResources(), icon))
-                .setStyle(new NotificationCompat.BigTextStyle()
-                        .bigText(message))
+                .setStyle(new NotificationCompat.BigTextStyle().bigText(message))
                 .setContentText(message)
                 .setAutoCancel(true)
                 //.setSound(defaultSoundUri)

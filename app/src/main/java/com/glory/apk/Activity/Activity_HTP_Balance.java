@@ -36,7 +36,7 @@ public class Activity_HTP_Balance extends AppCompatActivity {
                 "\n" +
                 "\u2022 No processing fee will be deducted if you wish to withdrawn any winning amount. \n" +
                 "\n" +
-                "\u2022 The amount given in the form of cash bonus from Gory-5 cannot be withdrawn. However it can be used to join any cash contests available and win more money. This cash bonus will be having an expiry date, so it has to be used before that. \n" +
+                "\u2022 The amount given in the form of cash bonus from Glory-5 cannot be withdrawn. However it can be used to join any cash contests available and win more money. This cash bonus will be having an expiry date, so it has to be used before that. \n" +
                 "\n" +
                 "\u2022 The minimum amount to withdrawn will be restricted to ₹150.";
 

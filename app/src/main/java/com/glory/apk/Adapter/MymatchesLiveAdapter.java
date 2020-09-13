@@ -49,10 +49,36 @@ public class MymatchesLiveAdapter extends RecyclerView.Adapter<MymatchesLiveAdap
 
         final LiveMyMatchesDatum follow = courses_offered_list.get(position);
         holder.xTvTime.setVisibility(View.INVISIBLE);
+        if (follow.getSeason_name()!=(null)) {
+//            holder.xTvTitle.setText(follow.getSeries().getName()+follow.getName());
+            holder.xTvTitle.setText(follow.getSeason_name());
+        } else {
 
-        if (follow.getName()!=null){
-            holder.xTvTitle.setText(follow.getName());
         }
+
+        if (follow.getCmsMatchAssociatedType()!=(null)) {
+//            holder.xTvTitle.setText(follow.getSeries().getName()+follow.getName());
+
+            if (follow.getCmsMatchAssociatedType().equalsIgnoreCase("t10")) {
+                holder.xTvMatchType.setText("T10");
+
+            } else if (follow.getCmsMatchAssociatedType().equalsIgnoreCase("t20")) {
+                holder.xTvMatchType.setText("T20");
+
+            } else if (follow.getCmsMatchAssociatedType().equalsIgnoreCase("test")) {
+                holder.xTvMatchType.setText("TEST");
+
+            } else if (follow.getCmsMatchAssociatedType().equalsIgnoreCase("one-day")) {
+                holder.xTvMatchType.setText("ODI");
+
+            } else {
+                holder.xTvMatchType.setVisibility(View.INVISIBLE);
+            }
+
+        } else {
+            holder.xTvMatchType.setVisibility(View.INVISIBLE);
+        }
+
         holder.xTvHomeTeam.setText(follow.getLiveMyMatchesHometeam().getShortName());
         holder.xTvOppositeTeamName.setText(follow.getLiveMyMatchesAwayteam().getShortName());
         if (follow.getLiveMyMatchesDatetime().getTime_left()!= null) {
@@ -112,9 +138,10 @@ public class MymatchesLiveAdapter extends RecyclerView.Adapter<MymatchesLiveAdap
     public class FilterViewHolder extends RecyclerView.ViewHolder {
 
         TextView xTvTitle;
-        TextView xTvHomeTeam, xTvOppositeTeamName, xTvTime;
+        TextView xTvHomeTeam, xTvOppositeTeamName, xTvTime,xTvMatchType;
         ImageView xIvHomeTeam, xIvOppsiteTeam;
         CardView card_view1;
+
 
         public FilterViewHolder(View itemView) {
             super(itemView);
@@ -126,6 +153,7 @@ public class MymatchesLiveAdapter extends RecyclerView.Adapter<MymatchesLiveAdap
 
             xIvHomeTeam=itemView.findViewById(R.id.xIvHomeTeam);
             xIvOppsiteTeam=itemView.findViewById(R.id.xIvOppsiteTeam);
+            xTvMatchType = itemView.findViewById(R.id.xTvMatchType);
 
         }
     }

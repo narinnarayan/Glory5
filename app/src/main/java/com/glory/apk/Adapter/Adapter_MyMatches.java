@@ -13,8 +13,8 @@ import android.widget.TextView;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.glory.apk.Model.MyMatches.Datum;
 import com.bumptech.glide.Glide;
+import com.glory.apk.Model.MyMatches.Datum;
 import com.glory.apk.R;
 
 import java.util.List;
@@ -22,23 +22,19 @@ import java.util.concurrent.TimeUnit;
 
 public class Adapter_MyMatches extends RecyclerView.Adapter<Adapter_MyMatches.FilterViewHolder> {
 
+    String qty;
+    String sub_category_id;
+    Boolean startSec = true;
     private Context mCtx;
     //we are storing all the products in a list
     private List<Datum> courses_offered_list;
     private Adapter_MyMatches.OnItemClickcourses mCallback1;
-    String qty;
-    String sub_category_id;
-    Boolean startSec = true;
 
 
     public Adapter_MyMatches(Context activity, List<Datum> data, Adapter_MyMatches.OnItemClickcourses mCallback1) {
         this.mCtx = activity;
         this.courses_offered_list = data;
         this.mCallback1 = mCallback1;
-    }
-
-    public interface OnItemClickcourses {
-        void OnItemClickcourses(int pos);
     }
 
     @Override
@@ -69,7 +65,7 @@ public class Adapter_MyMatches extends RecyclerView.Adapter<Adapter_MyMatches.Fi
         }
 
 
-        if (!follow.getSeason_name().equals(null)) {
+        if (!(follow.getSeason_name() == null)) {
 //            holder.xTvTitle.setText(follow.getSeries().getName()+follow.getName());
             holder.xTvTitle.setText(follow.getSeason_name());
 
@@ -77,22 +73,22 @@ public class Adapter_MyMatches extends RecyclerView.Adapter<Adapter_MyMatches.Fi
 
         }
 
-        if (!follow.getCmsMatchAssociatedType().equals(null)) {
+        if (!(follow.getCmsMatchAssociatedType() == (null))) {
 //            holder.xTvTitle.setText(follow.getSeries().getName()+follow.getName());
 
-            if (follow.getCmsMatchAssociatedType().equalsIgnoreCase("t10")){
+            if (follow.getCmsMatchAssociatedType().equalsIgnoreCase("t10")) {
                 holder.xTvMatchType.setText("T10");
 
-            }else if (follow.getCmsMatchAssociatedType().equalsIgnoreCase("t20")){
+            } else if (follow.getCmsMatchAssociatedType().equalsIgnoreCase("t20")) {
                 holder.xTvMatchType.setText("T20");
 
-            }else if (follow.getCmsMatchAssociatedType().equalsIgnoreCase("test")){
+            } else if (follow.getCmsMatchAssociatedType().equalsIgnoreCase("test")) {
                 holder.xTvMatchType.setText("TEST");
 
-            }else if (follow.getCmsMatchAssociatedType().equalsIgnoreCase("one-day")){
+            } else if (follow.getCmsMatchAssociatedType().equalsIgnoreCase("one-day")) {
                 holder.xTvMatchType.setText("ODI");
 
-            }else {
+            } else {
                 holder.xTvMatchType.setVisibility(View.INVISIBLE);
             }
 
@@ -120,35 +116,30 @@ public class Adapter_MyMatches extends RecyclerView.Adapter<Adapter_MyMatches.Fi
 
         if (follow.getDatetime().getTime_left() != null) {
 
-            if (position == 0) {
-                if (startSec == true) {
-                    startSec = false;
-                    CountDownTimer countDownTimer;
 
-                    countDownTimer = new CountDownTimer(Integer.parseInt(follow.getDatetime().getSeconds()) * 1000, 1000) {
-                        public void onTick(long millisUntilFinished) {
-                            long millis = millisUntilFinished;
-                            //Convert milliseconds into hour,minute and seconds
-                            String hms = String.format("%02dh %02dm %02ds left", TimeUnit.MILLISECONDS.toHours(millis), TimeUnit.MILLISECONDS.toMinutes(millis) - TimeUnit.HOURS.toMinutes(TimeUnit.MILLISECONDS.toHours(millis)), TimeUnit.MILLISECONDS.toSeconds(millis) - TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(millis)));
-                            holder.xTvTime.setText(hms);//set text
-                        }
+            if (holder.timer != null) {
+                holder.timer.cancel();
+            }
+            holder.timer = new CountDownTimer(Integer.parseInt(follow.getDatetime().getSeconds()) * 1000, 1000) {
+                public void onTick(long millisUntilFinished) {
+                    long millis = millisUntilFinished;
+                    //Convert milliseconds into hour,minute and seconds
+                    String hms = String.format("%02dh %02dm %02ds left", TimeUnit.MILLISECONDS.toHours(millis), TimeUnit.MILLISECONDS.toMinutes(millis) - TimeUnit.HOURS.toMinutes(TimeUnit.MILLISECONDS.toHours(millis)), TimeUnit.MILLISECONDS.toSeconds(millis) - TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(millis)));
+                    holder.xTvTime.setText(hms);//set text
+                }
 
-                        public void onFinish() {
+                public void onFinish() {
 
 //                        countdownTimerText.setText("TIME'S UP!!"); //On finish change timer text
 //                        countDownTimer = null;//set CountDownTimer to null
 //                        startTimer.setText(getString(R.string.start_timer));//Change button text
-                        }
-                    }.start();
-                } else {
-
                 }
+            }.start();
 
 
-            } else
-                holder.xTvTime.setText(follow.getDatetime().getTime_left() + " left");
+        } else
+            holder.xTvTime.setText(follow.getDatetime().getTime_left() + " left");
 
-        }
 
 
 //        String erfgerfg = follow.getHometeam().getLogoUrl();
@@ -202,13 +193,20 @@ public class Adapter_MyMatches extends RecyclerView.Adapter<Adapter_MyMatches.Fi
         return courses_offered_list.size();
     }
 
+    public interface OnItemClickcourses {
+        void OnItemClickcourses(int pos);
+    }
+
     public class FilterViewHolder extends RecyclerView.ViewHolder {
 
         TextView xTvTitle;
-        TextView xTvHomeTeam, xTvOppositeTeamName, xTvTime,xTvMatchType;
+        TextView xTvHomeTeam, xTvOppositeTeamName, xTvTime, xTvMatchType;
         ImageView xIvHomeTeam, xIvOppsiteTeam;
         RelativeLayout xRelayGray;
         CardView card_view1;
+
+        CountDownTimer timer;
+
 
         public FilterViewHolder(View itemView) {
             super(itemView);
@@ -221,7 +219,7 @@ public class Adapter_MyMatches extends RecyclerView.Adapter<Adapter_MyMatches.Fi
             xIvHomeTeam = itemView.findViewById(R.id.xIvHomeTeam);
             xIvOppsiteTeam = itemView.findViewById(R.id.xIvOppsiteTeam);
             xRelayGray = itemView.findViewById(R.id.xRelayGray);
-            xTvMatchType=itemView.findViewById(R.id.xTvMatchType);
+            xTvMatchType = itemView.findViewById(R.id.xTvMatchType);
 
         }
     }

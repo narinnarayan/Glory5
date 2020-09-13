@@ -131,15 +131,8 @@ public class Activity_SelectPlayer extends AppCompatActivity implements OnDataPa
         contin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                new Team_1_Fragment().method();
                 finalPlayerList = new ArrayList<>();
-//                for (int i=0;i<homePlayers.size();i++){
-//                    HomePlayersSelected list=homePlayers.get(i);
-//                   if (list.getSelected()){
-//                       FinalPlayerSelectionModel finalPlayerSelectionModel=new FinalPlayerSelectionModel(list.getName(),list.getImage(),list.getId());
-//                       finalPlayerList.add(finalPlayerSelectionModel);
-//                   }
-//                }
+
                 for (int i = 0; i < Team_1_Fragment.playerDetailsList.size(); i++) {
                     PlayersListHomeTeam playerDetails = Team_1_Fragment.playerDetailsList.get(i);
                     String fdgds = playerDetails.getMatchId().toString();

@@ -14,6 +14,7 @@ import android.widget.Toast;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.glory.apk.Activity.ActivityUpcoming;
 import com.glory.apk.Adapter.MymatchesUpcomingAdapter;
@@ -68,6 +69,15 @@ public class Fragment_MyMatchesUpcoming extends Fragment implements MymatchesUpc
         RecyclerView.LayoutManager mLayoutManager2 = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         recyclercricket.setLayoutManager(mLayoutManager2);
         mCallback2 = this;
+
+        final SwipeRefreshLayout pullToRefresh = rootView.findViewById(R.id.pullToRefresh);
+        pullToRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                matchesList();
+                pullToRefresh.setRefreshing(false);
+            }
+        });
         matchesList();
         return rootView;
     }

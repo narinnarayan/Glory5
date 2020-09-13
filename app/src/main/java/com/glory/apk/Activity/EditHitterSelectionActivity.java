@@ -248,8 +248,7 @@ public class EditHitterSelectionActivity extends AppCompatActivity implements Po
                     //  Log.e("testing","response = "+response.body().getData().getPageContent());
                     Log.e("testing", "response = " + response.body());
                     if (response.body().getUpdatePlayersResponse().getType().equals("save_success")) {
-//                        Log.e("testing", "dateumList.size = " + dateumList.size());
-//                        dateumList=response.body().getData();
+
                         pDialog.dismiss();
                         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);

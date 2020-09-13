@@ -62,6 +62,7 @@ public class CompletedAdapter extends RecyclerView.Adapter<CompletedAdapter.Filt
             holder.xTvWonMoney.setText("YOU WON \u20B9" + follow.getContest().getPrizeAmount());
 
         if (follow.getTeamName() != null) {
+
             holder.xTvTeamName1e.setText(follow.getTeamName());
             holder.xTvName.setText(follow.getTeamName());
 

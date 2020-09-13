@@ -129,7 +129,10 @@ public class Team_2_Fragment extends Fragment implements OppositeTeamAdapter.onI
                     }
 
                 } else {
-                    Log.e("testing", "error");
+
+                    xLinLayMain.setVisibility(View.VISIBLE);
+                    rv_Opposite_players.setVisibility(View.GONE);
+                    Log.e("testing", "INVISIBLE ");
                     pDialog.dismiss();
 //                    Toast.makeText(getContext(), response.body().getResponse().getType(), Toast.LENGTH_SHORT).show();
                 }

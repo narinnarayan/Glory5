@@ -4,12 +4,6 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +11,11 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.glory.apk.Activity.EditPlayerActivity;
 import com.glory.apk.Adapter.EditHomeTeamAdapter;
@@ -43,21 +42,19 @@ import static com.glory.apk.Activity.EditPlayerActivity.ContestUserId;
 
 
 public class EditTeam_1Fragment extends Fragment implements EditHomeTeamAdapter.onItemClick {
-    private PlayerViewAdapter playerViewAdapter;
-    private LinearLayoutManager linearLayoutManager;
-    private RecyclerView recyclerView;
-    private EditHomeTeamAdapter homeTeamAdapter;
     public static List<EditPlayerHomeTeam> playerDetailsList = new ArrayList<>();
-
     public static List<EditPlayerAwayTeam> playerawayDetailsList = new ArrayList<>();
-
     mydataBack mCallback;
     EditPlayerActivity mActivity;
-    private String matchd;
     OnDataPass dataPasser;
     EditHomeTeamAdapter.onItemClick mCallBack;
     Button xBtncallMain;
     LinearLayout xLinLayMain;
+    private PlayerViewAdapter playerViewAdapter;
+    private LinearLayoutManager linearLayoutManager;
+    private RecyclerView recyclerView;
+    private EditHomeTeamAdapter homeTeamAdapter;
+    private String matchd;
 
     public EditTeam_1Fragment() {
         // Required empty public constructor
@@ -139,9 +136,6 @@ public class EditTeam_1Fragment extends Fragment implements EditHomeTeamAdapter.
                                     StaticUtils.EditCREDITS5 = StaticUtils.EditCREDITS5 - Double.parseDouble(playerDetails.getCredits());
                                     Log.e("testing", "lestb =" + StaticUtils.EditCREDITS5);
 
-
-                                    //                 passData(String.valueOf(Edit_FINAL_COUNT), String.valueOf(Edit_HomeTeamcount), String.valueOf(Edit_OppoTeamcount), StaticUtils.EditCREDITS5);
-
                                 }
                             } else {
 
@@ -154,7 +148,6 @@ public class EditTeam_1Fragment extends Fragment implements EditHomeTeamAdapter.
                                 }
                             }
                         }
-
 
                         playerawayDetailsList = response.body().getData().get(0).getEditPlayerMatch().getEditPlayerAwayTeam();
 
@@ -195,10 +188,27 @@ public class EditTeam_1Fragment extends Fragment implements EditHomeTeamAdapter.
                         } else {
                             xLinLayMain.setVisibility(View.GONE);
                             recyclerView.setVisibility(View.VISIBLE);
+                            List<EditPlayerHomeTeam> newplayerDetailsList = new ArrayList<>();
+
+                            for (int i = 0; i < playerDetailsList.size(); i++) {
+
+
+                                if (playerDetailsList.get(i).getIsselected() == 1) {
+                                    newplayerDetailsList.add(playerDetailsList.get(i));
+                                }
+                            }
+
+                            for (int i = 0; i < playerDetailsList.size(); i++) {
+
+
+                                if (playerDetailsList.get(i).getIsselected() != 1) {
+                                    newplayerDetailsList.add(playerDetailsList.get(i));
+                                }
+                            }
 
                             String awayTeamCount = "0";
                             awayTeamCount = response.body().getData().get(0).getAwayTeamCount();
-                            homeTeamAdapter = new EditHomeTeamAdapter(getActivity(), playerDetailsList, response.body().getData().get(0).getPackageId(), mCallBack, HomeTeam);
+                            homeTeamAdapter = new EditHomeTeamAdapter(getActivity(), newplayerDetailsList, response.body().getData().get(0).getPackageId(), mCallBack, HomeTeam);
                             recyclerView.setAdapter(homeTeamAdapter);
                         }
                         pDialog.dismiss();
@@ -211,6 +221,9 @@ public class EditTeam_1Fragment extends Fragment implements EditHomeTeamAdapter.
 
                 } else {
                     Log.e("testing", "error");
+
+                    xLinLayMain.setVisibility(View.VISIBLE);
+                    recyclerView.setVisibility(View.GONE);
                     pDialog.dismiss();
                     Toast.makeText(getContext(), response.body().getEditPlayerResponse().getType(), Toast.LENGTH_SHORT).show();
                 }
@@ -276,14 +289,14 @@ public class EditTeam_1Fragment extends Fragment implements EditHomeTeamAdapter.
 
     }
 
-    public interface mydataBack {
-        void bringBackString(List<EditPlayerHomeTeam> list);
-    }
-
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         dataPasser = (OnDataPass) context;
 
+    }
+
+    public interface mydataBack {
+        void bringBackString(List<EditPlayerHomeTeam> list);
     }
 }

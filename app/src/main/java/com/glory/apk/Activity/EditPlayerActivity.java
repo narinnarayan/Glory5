@@ -272,14 +272,14 @@ public class EditPlayerActivity extends AppCompatActivity implements OnDataPass 
             xTvOppositeCount.setText(opposite);
             xTvCredits.setText(String.valueOf( String.format("%.1f", credits)));
 
-            xTvMax.setText( "Max "+finalValue+ "players from a team");
+            xTvMax.setText( "Max "+3+ " players from a team");
 
         } else {
             xTvFinalCount.setText(finalValue + "/7");
             xTvHomeCount.setText(home);
             xTvOppositeCount.setText(opposite);
             xTvCredits.setText(String.valueOf( String.format("%.1f", credits)));
-            xTvMax.setText( "Max "+finalValue+ "players from a team");
+            xTvMax.setText( "Max "+4+ " players from a team");
 
         }
     }

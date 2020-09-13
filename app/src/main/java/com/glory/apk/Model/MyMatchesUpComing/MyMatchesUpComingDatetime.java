@@ -36,6 +36,18 @@ public class MyMatchesUpComingDatetime {
     @Expose
     private String time_left;
 
+    @SerializedName("seconds")
+    @Expose
+    private String seconds;
+
+    public String getSeconds() {
+        return seconds;
+    }
+
+    public void setSeconds(String seconds) {
+        this.seconds = seconds;
+    }
+
     public String getTime_left() {
         return time_left;
     }

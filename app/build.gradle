@@ -14,8 +14,8 @@ android {
         applicationId "com.glory.apk"
         minSdkVersion 16
         targetSdkVersion 29
-        versionCode 5
-        versionName "1.4"
+        versionCode 9
+        versionName "1.8"
         multiDexEnabled true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -87,6 +87,11 @@ dependencies {
     implementation 'com.karumi:dexter:5.0.0'
     implementation 'com.facebook.android:facebook-login:[5,6)'
     implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.0.0'
+
+    // Recommended: Add the Firebase SDK for Google Analytics.
+    implementation 'com.google.firebase:firebase-analytics:17.5.0'
+
+    // Add the Firebase Crashlytics SDK.
 
 }
 apply plugin: 'com.google.gms.google-services'

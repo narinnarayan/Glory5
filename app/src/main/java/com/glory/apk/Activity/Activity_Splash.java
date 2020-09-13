@@ -65,6 +65,8 @@ public class Activity_Splash extends AppCompatActivity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
+         new RuntimeException("Test Crash"); // Force a crash
+        getHashkey();
         mDatabase = FirebaseDatabase.getInstance().getReference();
         myTopPostsQuery = mDatabase.child("versions").child("android");
 
@@ -114,7 +116,7 @@ public class Activity_Splash extends AppCompatActivity {
                 force = hashmap.get("forceble");
 
                 String versionName = BuildConfig.VERSION_NAME;
-                if (Float.parseFloat(version) == Float.parseFloat(versionName)) {
+                if (Float.parseFloat(version) <= Float.parseFloat(versionName)) {
                     threadcalling();
 
                 } else {
@@ -268,6 +270,23 @@ public class Activity_Splash extends AppCompatActivity {
         };
         timerThread.start();
 
+    }
+
+    public void getHashkey(){
+        try {
+            PackageInfo info = getPackageManager().getPackageInfo(getApplicationContext().getPackageName(), PackageManager.GET_SIGNATURES);
+            for (Signature signature : info.signatures) {
+                MessageDigest md = MessageDigest.getInstance("SHA");
+                md.update(signature.toByteArray());
+
+                Log.i("Base64", Base64.encodeToString(md.digest(),Base64.NO_WRAP));
+            }
+        } catch (PackageManager.NameNotFoundException e) {
+            Log.d("Name not found", e.getMessage(), e);
+
+        } catch (NoSuchAlgorithmException e) {
+            Log.d("Error", e.getMessage(), e);
+        }
     }
 
 }

@@ -49,7 +49,6 @@
                     android:editable="false"
                     android:focusable="false"
                     android:hint=" Fullname "
-
                     android:padding="8dp"
                     android:singleLine="true"
                     android:textSize="13dp" />
@@ -118,7 +117,7 @@
                     android:drawableLeft="@drawable/ic_action_phone"
                     android:editable="false"
                     android:focusable="false"
-                    android:hint="Mobile number"
+                    android:hint=" Mobile number"
                     android:inputType="number"
                     android:padding="8dp"
                     android:singleLine="true"

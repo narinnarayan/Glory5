@@ -49,20 +49,47 @@ public class MyMatchesCompletedAdapter extends RecyclerView.Adapter<MyMatchesCom
 
         final MyMatchesCompletedDatum follow = courses_offered_list.get(position);
         holder.xTvTime.setVisibility(View.INVISIBLE);
+        if (follow.getSeason_name()!=(null)) {
+//            holder.xTvTitle.setText(follow.getSeries().getName()+follow.getName());
+            holder.xTvTitle.setText(follow.getSeason_name());
+        } else {
 
-        holder.xTvTitle.setText(String.valueOf(follow.getName()));
+        }
         if (follow.getMyMatchesCompletedHometeam().getShortName() != null) {
             holder.xTvHomeTeam.setText(follow.getMyMatchesCompletedHometeam().getShortName());
 
         }
         if (follow.getMyMatchesCompletedAwayteam().getShortName() != null) {
             holder.xTvOppositeTeamName.setText(follow.getMyMatchesCompletedAwayteam().getShortName());
-
         }
 
         if (follow.getTime_left() != (null)) {
             holder.xTvTime.setText(follow.getTime_left());
         }
+
+        if (follow.getCmsMatchAssociatedType()!=(null)) {
+//            holder.xTvTitle.setText(follow.getSeries().getName()+follow.getName());
+
+            if (follow.getCmsMatchAssociatedType().equalsIgnoreCase("t10")) {
+                holder.xTvMatchType.setText("T10");
+
+            } else if (follow.getCmsMatchAssociatedType().equalsIgnoreCase("t20")) {
+                holder.xTvMatchType.setText("T20");
+
+            } else if (follow.getCmsMatchAssociatedType().equalsIgnoreCase("test")) {
+                holder.xTvMatchType.setText("TEST");
+
+            } else if (follow.getCmsMatchAssociatedType().equalsIgnoreCase("one-day")) {
+                holder.xTvMatchType.setText("ODI");
+
+            } else {
+                holder.xTvMatchType.setVisibility(View.INVISIBLE);
+            }
+
+        } else {
+            holder.xTvMatchType.setVisibility(View.INVISIBLE);
+        }
+
 
 //        String erfgerfg=follow.getMyMatchesCompletedHometeam().getLogoUrl();
         if (follow.getMyMatchesCompletedHometeam().getLogoUrl() == null || follow.getMyMatchesCompletedHometeam().getLogoUrl().length() == 0) {
@@ -116,7 +143,7 @@ public class MyMatchesCompletedAdapter extends RecyclerView.Adapter<MyMatchesCom
     public class FilterViewHolder extends RecyclerView.ViewHolder {
 
         TextView xTvTitle;
-        TextView xTvHomeTeam, xTvOppositeTeamName, xTvTime;
+        TextView xTvHomeTeam, xTvOppositeTeamName, xTvTime, xTvMatchType;
         ImageView xIvHomeTeam, xIvOppsiteTeam;
         CardView card_view1;
 
@@ -130,6 +157,7 @@ public class MyMatchesCompletedAdapter extends RecyclerView.Adapter<MyMatchesCom
 
             xIvHomeTeam = itemView.findViewById(R.id.xIvHomeTeam);
             xIvOppsiteTeam = itemView.findViewById(R.id.xIvOppsiteTeam);
+            xTvMatchType = itemView.findViewById(R.id.xTvMatchType);
 
         }
     }

@@ -23,6 +23,7 @@ import android.provider.MediaStore;
 import android.text.Html;
 import android.util.Base64;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -71,7 +72,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     Toolbar toolbar;
     FragmentManager mFragmentManager;
-    FragmentTransaction mFragmentTransaction;
     ActionBarDrawerToggle toggle;
     DrawerLayout drawer;
     ImageView imageViewprofile;
@@ -81,7 +81,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     LinearLayout linearhome, linearmatches, linearmore, linearnotifications;
 
-    JSONParser jsonParser = new JSONParser();
 
     String strregisteredtoken;
 
@@ -140,8 +139,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         Fragment_Home fragment2 = new Fragment_Home();
         FragmentTransaction fragmentTransaction2 =
                 getSupportFragmentManager().beginTransaction();
-        fragmentTransaction2.replace(R.id.fragment_container, fragment2)
-        ;
+        fragmentTransaction2.replace(R.id.fragment_container, fragment2);
         fragmentTransaction2.commitAllowingStateLoss();
 
         linearhome.setOnClickListener(new View.OnClickListener() {
@@ -257,7 +255,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 Uri contentURI = data.getData();
                 try {
                     bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), contentURI);
-                    matchesList();
+                    updateImage();
 
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -267,7 +265,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         } else if (requestCode == CAMERA) {
             bitmap = (Bitmap) data.getExtras().get("data");
-            matchesList();
+            updateImage();
         }
     }
 
@@ -278,10 +276,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return Base64.encodeToString(imgByte, Base64.DEFAULT);
     }
 
-    private void matchesList() {
-
-        Log.e("testing", "strregisteredtoken = " + "matchesList");
-
+    private void updateImage() {
         pDialog = new ProgressDialog(MainActivity.this);
         pDialog.setMessage("Please Wait ...");
         pDialog.setIndeterminate(false);
@@ -293,17 +288,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         String viewuseremail = sharedPrefs.getPreferences(getApplicationContext(), sharedPrefs.Pref_userId);
         Call<UpdateprofileJson> login = api.UpdateImage(viewuseremail, image);
 
-//        Call<UpdateprofileJson> login = api.PancardImageUpload(image);
         login.enqueue(new Callback<UpdateprofileJson>() {
             @Override
             public void onResponse(Call<UpdateprofileJson> call, Response<UpdateprofileJson> response) {
                 pDialog.dismiss();
-                Log.e("testing", "status = " + response.body());
 
-                //       Log.e("testing", "status = " + response.body().getStatus());
-                Log.e("testing", "response = " + response.body().getResponse().getMessage());
-                //  Log.e("testing","response = "+response.body().getData().getPageContent());
-                Log.e("testing", "response = " + response.body());
                 if (response.body().getStatus() == null || response.body().getStatus().length() == 0) {
 
                 } else if (response.body().getStatus().equals("success")) {
@@ -318,7 +307,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     } else {
                         Toast.makeText(getApplicationContext(), response.body().getResponse().getType(), Toast.LENGTH_SHORT).show();
                         dialog.dismiss();
-
                     }
 
                 } else {
@@ -361,7 +349,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         // check for permanent denial of any permission
                         if (report.isAnyPermissionPermanentlyDenied()) {
                             // show alert dialog navigating to Settings
-
                         }
                     }
 
@@ -416,44 +403,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             Intent intent = new Intent(MainActivity.this, Activity_FantasyPointSystem.class);
             startActivity(intent);
         } else if (id == R.id.logout) {
-
             logout();
-
-
         }
-       /* else if(id == R.id.nav_password)
-        {
-            Intent intent = new Intent(MainActivity.this, Activity_Change_Pwd.class);
-            startActivity(intent);
-        }
-
-        else if(id == R.id.nav_tc)
-        {
-            Intent intent = new Intent(MainActivity.this, Activity_TC.class);
-            startActivity(intent);
-        }
-        else if(id == R.id.nav_pp)
-        {
-            Intent intent = new Intent(MainActivity.this, Activity_PP.class);
-            startActivity(intent);
-        }
-
-
-        else if(id == R.id.nav_aboutus)
-        {
-            Intent intent = new Intent(MainActivity.this, Activity_AboutUs.class);
-            startActivity(intent);
-        }
-        else if(id == R.id.nav_contactus)
-        {
-            Intent intent = new Intent(MainActivity.this, Activity_ContactUs.class);
-            startActivity(intent);
-        }
-        else if(id == R.id.nav_logout)
-        {
-            logout();
-        }*/
-
 
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
@@ -471,7 +422,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     public void onClick(DialogInterface arg0, int arg1) {
 
                         //new LoadLogout().execute();
-                        RetrofitLogin();
+                        RetrofitLogout();
 
                     }
                 });
@@ -491,7 +442,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
 
-    private void RetrofitLogin() {
+    private void RetrofitLogout() {
 
         Log.e("testing", "strregisteredtoken = " + strregisteredtoken);
 
@@ -560,7 +511,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     private void Activity_Profile() {
 
-        Log.e("testing", "strregisteredtoken = " + "matchesList");
 
         dialog = new ProgressDialog(MainActivity.this);
         dialog.setMessage("Please Wait ...");
@@ -695,12 +645,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public void onBackPressed() {
         if (doubleBackToExitPressedOnce) {
             super.onBackPressed();
+            finish();
             return;
+
         }
+
 
         this.doubleBackToExitPressedOnce = true;
         Toast.makeText(this, "Please click BACK again to exit", Toast.LENGTH_SHORT).show();
-
         new Handler().postDelayed(new Runnable() {
 
             @Override
@@ -708,6 +660,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 doubleBackToExitPressedOnce = false;
             }
         }, 2000);
+
     }
 
 

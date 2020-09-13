@@ -23,7 +23,6 @@
                 android:id="@+id/xTvBankName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Indian Bank"
                 android:maxLines="1"
                 android:layout_marginLeft="15dp"
                 android:textColor="@color/black" />
@@ -62,7 +61,6 @@
                         android:id="@+id/xTvBankName"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Indian Bank"
                         android:maxLines="1"
                         android:textColor="@color/black" />
 
@@ -73,7 +71,6 @@
                         android:letterSpacing="0.1"
                         android:maxLines="1"
                         android:layout_alignParentBottom="true"
-                        android:text="1545154852545254545"
                         android:textColor="@color/black" />
 
 
@@ -89,7 +86,6 @@
                 android:layout_gravity="end"
                 android:layout_marginRight="10dp"
                 android:layout_marginBottom="5dp"
-                android:text="Verification Pending"
                 android:textColor="@color/red"
                 android:textSize="12dp" />
         </LinearLayout>

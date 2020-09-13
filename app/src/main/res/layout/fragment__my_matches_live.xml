@@ -4,15 +4,21 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/black">
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/pullToRefresh"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
     <androidx.recyclerview.widget.RecyclerView
 
         android:id="@+id/recyclerview"
         android:visibility="gone"
-
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
     </androidx.recyclerview.widget.RecyclerView>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
     <LinearLayout
         android:id="@+id/xLinLayMain"
         android:layout_width="match_parent"

@@ -228,76 +228,6 @@ public class Activity_InfoSettings extends AppCompatActivity {
 
     }
 
-    private void startdatepicker() {
-
-        final Calendar c = Calendar.getInstance();
-        mYear = c.get(Calendar.YEAR);
-        mMonth = c.get(Calendar.MONTH);
-        mDay = c.get(Calendar.DAY_OF_MONTH);
-        mWeek = c.get(Calendar.WEEK_OF_MONTH);
-        // Launch Date Picker Dialog
-        DatePickerDialog dpd = new DatePickerDialog(Activity_InfoSettings.this,
-                new DatePickerDialog.OnDateSetListener() {
-                    @Override
-                    public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-
-                        String strfromdate = year + "-" + (monthOfYear + 1) + "-" + dayOfMonth;
-                        Log.e("testing", "strfromdate = " + strfromdate);
-                        //  date1 = Fromdate.getText().toString().trim();
-                        date11 = strfromdate;
-                        // date22 = textselectto.getText().toString().trim();
-
-                        int diffInDays2 = 0;
-
-                        SimpleDateFormat dfDate2 = new SimpleDateFormat("dd//MM//yyyy");
-                        java.util.Date d3 = null;
-                        java.util.Date d4 = null;
-                        Calendar cal2 = Calendar.getInstance();
-                        try {
-                            d3 = dfDate2.parse(date22);
-                            d4 = dfDate2.parse(date11);//Returns 15/10/2012
-                        } catch (java.text.ParseException e) {
-                            e.printStackTrace();
-                        }
-
-                        if (d3 == null || d4 == null) {
-                            // Display Selected date in textbox
-                            textdob.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
-                            textdob.setTextColor(getResources().getColor(R.color.black));
-                            Log.e("testing", "event_date" + dayOfMonth + "-" + (monthOfYear + 1) + "-" + year);
-                            Calendar calendar = Calendar.getInstance();
-                            calendar.set(year, monthOfYear, dayOfMonth);
-                            int dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK);
-                            Log.e("testing", "week of day = " + dayOfWeek);
-
-
-                        } else {
-                            diffInDays2 = (int) ((d3.getTime() - d4.getTime()) / (1000 * 60 * 60 * 24));
-                            System.out.println(diffInDays2);
-                            Log.e("testing", "date difference  = " + diffInDays2);
-
-                            if (diffInDays2 < 0) {
-                                Toast.makeText(Activity_InfoSettings.this, "Please select correct date", Toast.LENGTH_SHORT).show();
-                            } else {
-
-
-                                // Display Selected date in textbox
-                                textdob.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
-                                textdob.setTextColor(getResources().getColor(R.color.black));
-                                Log.e("testing", "event_date" + dayOfMonth + "-" + (monthOfYear + 1) + "-" + year);
-                                Calendar calendar = Calendar.getInstance();
-                                calendar.set(year, monthOfYear, dayOfMonth);
-                                int dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK);
-                                Log.e("testing", "week of day = " + dayOfWeek);
-
-                            }
-                        }
-                    }
-                }, mYear, mMonth, mDay);
-
-        dpd.getDatePicker().setMinDate(System.currentTimeMillis() - 1000);
-        dpd.show();
-    }
 
 
     private void Activity_Profile() {
@@ -310,8 +240,6 @@ public class Activity_InfoSettings extends AppCompatActivity {
         dialog.setCancelable(false);
         dialog.show();
 
-//        Api api = ApiClient.getClient().create(Api.class);
-//        Call<AboutExample> login = api.PlayersList("1");
         String viewuseremail = sharedPrefs.getPreferences(getApplicationContext(), sharedPrefs.Pref_userId);
         Log.e("testing", "viewuseremail = " + viewuseremail);
 
@@ -336,22 +264,20 @@ public class Activity_InfoSettings extends AppCompatActivity {
 
 
                         if (String.valueOf(response.body().getAboutData().getName()).equals("null")) {
-                            editname.setClickable(true);
-                            editname.setEnabled(true);
-                            editname.setFocusable(true);
+//                            editname.setClickable(true);
+//                            editname.setEnabled(true);
+//                            editname.setFocusable(true);
                         } else {
-                            editname.setClickable(false);
-                            editname.setFocusable(false);
-                            editname.setEnabled(false);
+//                            editname.setClickable(false);
+//                            editname.setFocusable(false);
+//                            editname.setEnabled(false);
                             editname.setText(Html.fromHtml(response.body().getAboutData().getName().toString()));
 
                         }
 
                         if (String.valueOf(response.body().getAboutData().getFullname()).equals("null")) {
 
-
                         } else {
-
                             editfullname.setText(Html.fromHtml(response.body().getAboutData().getFullname().toString()));
                         }
 

@@ -91,6 +91,18 @@ public class MyMatchesCompletedDatum {
     @Expose
     private String time_left;
 
+    @SerializedName("season_name")
+    @Expose
+    private String season_name;
+
+    public void setSeason_name(String season_name) {
+        this.season_name = season_name;
+    }
+
+    public String getSeason_name() {
+        return season_name;
+    }
+
     public String getTime_left() {
         return time_left;
     }

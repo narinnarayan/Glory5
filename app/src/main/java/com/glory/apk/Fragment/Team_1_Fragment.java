@@ -134,6 +134,7 @@ public class Team_1_Fragment extends Fragment implements  HomeTeamAdapter.onItem
                                 playerDetails.setSelected(false);
 
                             }
+
                             homeTeamAdapter = new HomeTeamAdapter(getActivity(), playerDetailsList, packageName,mCallBack);
                             recyclerView.setAdapter(homeTeamAdapter);
 
@@ -149,6 +150,9 @@ public class Team_1_Fragment extends Fragment implements  HomeTeamAdapter.onItem
 
                 } else {
                     Log.e("testing", "error");
+                    xLinLayMain.setVisibility(View.VISIBLE);
+                    recyclerView.setVisibility(View.GONE);
+                    Log.e("testing", "INVISIBLE ");
                     pDialog.dismiss();
 //                    Toast.makeText(getContext(), response.body().getResponse().getType(), Toast.LENGTH_SHORT).show();
                 }
