@@ -116,8 +116,6 @@ public class Adapter_MyMatches extends RecyclerView.Adapter<Adapter_MyMatches.Fi
 
         if(position==0){
             if (follow.getDatetime().getTime_left() != null) {
-
-
                 if (holder.timer != null) {
                     holder.timer.cancel();
                 }
