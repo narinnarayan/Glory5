@@ -1,7 +1,5 @@
 package com.glory.apk.Activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -16,12 +14,14 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.chaos.view.PinView;
 import com.glory.apk.MainActivity;
 import com.glory.apk.R;
 import com.glory.apk.Utilites.EndUrls;
 import com.glory.apk.Utilites.JSONParserNew;
 import com.glory.apk.Utilites.sharedPrefs;
-import com.chaos.view.PinView;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
@@ -165,14 +165,13 @@ public class Activity_SignupOtp extends AppCompatActivity {
 
                         strmessage = responceObject.getString("message");
                         strtype = responceObject.getString("type");
-                        if (strtype.equals("verify_success")){
+                        if (strtype.equals("verify_success")) {
                             String data = json.getString("data");
                             JSONObject dataObject = new JSONObject(data);
                             userId = dataObject.getString("user_id");
                             Log.e("testing", "usersssId = " + userId);
 
                         }
-
 
 
                     } else {
@@ -242,10 +241,9 @@ public class Activity_SignupOtp extends AppCompatActivity {
         String response;
         String strresponse;
         String strcode, strtype, strmessage;
-
-        private ProgressDialog pDialog;
         Integer intcartcount = 0;
         String validuser_id;
+        private ProgressDialog pDialog;
 
         @Override
         protected void onPreExecute() {
@@ -302,11 +300,7 @@ public class Activity_SignupOtp extends AppCompatActivity {
                 }
 
             }
-
-
             return response;
-
-
         }
 
         @Override

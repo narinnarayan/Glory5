@@ -114,31 +114,39 @@ public class Adapter_MyMatches extends RecyclerView.Adapter<Adapter_MyMatches.Fi
 //
 //        }
 
-        if (follow.getDatetime().getTime_left() != null) {
+        if(position==0){
+            if (follow.getDatetime().getTime_left() != null) {
 
 
-            if (holder.timer != null) {
-                holder.timer.cancel();
-            }
-            holder.timer = new CountDownTimer(Integer.parseInt(follow.getDatetime().getSeconds()) * 1000, 1000) {
-                public void onTick(long millisUntilFinished) {
-                    long millis = millisUntilFinished;
-                    //Convert milliseconds into hour,minute and seconds
-                    String hms = String.format("%02dh %02dm %02ds left", TimeUnit.MILLISECONDS.toHours(millis), TimeUnit.MILLISECONDS.toMinutes(millis) - TimeUnit.HOURS.toMinutes(TimeUnit.MILLISECONDS.toHours(millis)), TimeUnit.MILLISECONDS.toSeconds(millis) - TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(millis)));
-                    holder.xTvTime.setText(hms);//set text
+                if (holder.timer != null) {
+                    holder.timer.cancel();
                 }
+                holder.timer = new CountDownTimer(Integer.parseInt(follow.getDatetime().getSeconds()) * 1000, 1000) {
+                    public void onTick(long millisUntilFinished) {
+                        long millis = millisUntilFinished;
+                        //Convert milliseconds into hour,minute and seconds
+                        String hms = String.format("%02dh %02dm %02ds left", TimeUnit.MILLISECONDS.toHours(millis), TimeUnit.MILLISECONDS.toMinutes(millis) - TimeUnit.HOURS.toMinutes(TimeUnit.MILLISECONDS.toHours(millis)), TimeUnit.MILLISECONDS.toSeconds(millis) - TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(millis)));
+                        holder.xTvTime.setText(hms);//set text
+                    }
 
-                public void onFinish() {
+                    public void onFinish() {
 
 //                        countdownTimerText.setText("TIME'S UP!!"); //On finish change timer text
 //                        countDownTimer = null;//set CountDownTimer to null
 //                        startTimer.setText(getString(R.string.start_timer));//Change button text
-                }
-            }.start();
+                    }
+                }.start();
 
 
-        } else
+            } else
+                holder.xTvTime.setText(follow.getDatetime().getTime_left() + " left");
+
+        }else {
             holder.xTvTime.setText(follow.getDatetime().getTime_left() + " left");
+
+        }
+
+
 
 
 

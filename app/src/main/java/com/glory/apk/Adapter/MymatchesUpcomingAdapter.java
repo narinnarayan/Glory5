@@ -77,9 +77,6 @@ public class MymatchesUpcomingAdapter extends RecyclerView.Adapter<MymatchesUpco
 
                 public void onFinish() {
 
-//                        countdownTimerText.setText("TIME'S UP!!"); //On finish change timer text
-//                        countDownTimer = null;//set CountDownTimer to null
-//                        startTimer.setText(getString(R.string.start_timer));//Change button text
                 }
             }.start();
 

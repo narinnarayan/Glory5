@@ -294,12 +294,7 @@ public class VerifyPanCardActivity extends AppCompatActivity implements AdapterV
             @Override
             public void onResponse(Call<PancardExample> call, Response<PancardExample> response) {
                 pDialog.dismiss();
-                Log.e("testing", "status = " + response.body());
 
-                //       Log.e("testing", "status = " + response.body().getStatus());
-                Log.e("testing", "response = " + response.body().getResponse().getMessage());
-                //  Log.e("testing","response = "+response.body().getData().getPageContent());
-                Log.e("testing", "response = " + response.body());
                 if (response.body().getStatus() == null || response.body().getStatus().length() == 0) {
 
                 } else if (response.body().getStatus().equals("success")) {

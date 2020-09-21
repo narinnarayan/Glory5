@@ -29,18 +29,6 @@ public class CompletedAdapter extends RecyclerView.Adapter<CompletedAdapter.Filt
     String sub_category_id;
     private List<com.glory.apk.Model.CompletedDataModel.Datum> data;
 
-
-//    public CompletedAdapter(Context activity, List<Datum> data, Adapter_MyMatches.OnItemClickcourses mCallback1) {
-//        this.mCtx = activity;
-//        this.courses_offered_list = data;
-//        this.mCallback1 = mCallback1;
-//    }
-
-//    public CompletedAdapter(Context mCtx, List<Datum> data) {
-//        this.mCtx = mCtx;
-//        this.data = data;
-//    }
-
     public CompletedAdapter(CompletedActivity mCtx, List<com.glory.apk.Model.CompletedDataModel.Datum> data) {
         this.mCtx = mCtx;
         this.data = data;
@@ -116,18 +104,6 @@ public class CompletedAdapter extends RecyclerView.Adapter<CompletedAdapter.Filt
         } else {
             holder.xTvWonMoney.setText("Awaiting Results");
         }
-
-//        if (follow.getMatchDraw() == 0) {
-//            if (follow.getWin() == 0)
-//                holder.xTvWonMoney.setText("YOU LOST");
-//            else
-//                holder.xTvWonMoney.setText("YOU WON \u20B9" + follow.getContest().getPrizeAmount());
-//        } else if (follow.getMatchDraw() == 1) {
-//        } else if (follow.getMatchDraw() == 2) {
-//        } else {
-//            holder.xTvWonMoney.setText("Awaiting Results");
-//        }
-
 
         holder.xLinLayMain1e.setOnClickListener(new View.OnClickListener() {
             @Override
